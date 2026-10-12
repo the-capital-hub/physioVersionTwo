@@ -1,0 +1,833 @@
+
+.about-page {
+  --about-navy: #16324f;
+  --about-blue: #4f83cc;
+  --about-light-blue: #eaf2fc;
+  --about-background: #f4f7fb;
+  --about-white: #ffffff;
+  --about-text: #24384c;
+  --about-muted: #65758a;
+  --about-border: #e1e8f0;
+
+  width: 100%;
+  overflow: hidden;
+  color: var(--about-text);
+  background: var(--about-white);
+}
+
+.about-page * {
+  box-sizing: border-box;
+}
+
+.about-page img {
+  display: block;
+  max-width: 100%;
+}
+
+.about-container {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.about-page h2,
+.about-page h3 {
+  margin-top: 0;
+  color: var(--about-navy);
+  font-family: "Manrope", sans-serif;
+}
+
+.about-page p,
+.about-page a,
+.about-page button,
+.about-page span {
+  font-family: "DM Sans", sans-serif;
+}
+
+.about-page p {
+  color: var(--about-muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.about-page a {
+  text-decoration: none;
+}
+
+.about-page a:focus-visible,
+.about-page button:focus-visible {
+  outline: 3px solid var(--about-blue);
+  outline-offset: 4px;
+}
+
+.about-page section {
+  position: relative;
+}
+
+/* Introduction */
+
+.about-intro {
+  padding: 20px 0;
+  background: var(--about-white);
+}
+
+.about-intro-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+  gap: 32px;
+}
+
+.about-intro-copy {
+  max-width: 630px;
+}
+
+.about-eyebrow {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: var(--about-blue);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  line-height: 1.5;
+}
+
+.about-intro-copy h2 {
+  margin-bottom: 12px;
+  font-size: clamp(27px, 3.2vw, 39px);
+  font-weight: 800;
+  line-height: 1.22;
+  letter-spacing: -0.9px;
+}
+
+.about-intro-copy h2 span {
+  color: var(--about-blue);
+}
+
+.about-intro-copy > p {
+  margin-bottom: 12px;
+}
+
+.about-intro-points {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.about-intro-points span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--about-navy);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.about-intro-points svg {
+  flex-shrink: 0;
+  color: var(--about-blue);
+}
+
+.about-intro-visual {
+  position: relative;
+  min-height: 350px;
+  overflow: hidden;
+  border-radius: 21px;
+  background: var(--about-light-blue);
+}
+
+.about-intro-visual > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-image-note {
+  position: absolute;
+  right: 13px;
+  bottom: 13px;
+  left: 13px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(10px);
+}
+
+.about-note-icon {
+  display: grid;
+  width: 43px;
+  height: 43px;
+  flex-shrink: 0;
+  place-items: center;
+  border-radius: 12px;
+  color: var(--about-blue);
+  background: var(--about-light-blue);
+}
+
+.about-image-note strong {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--about-navy);
+  font-size: 14px;
+}
+
+.about-image-note p {
+  margin: 0;
+  font-size: 12px;
+}
+
+/* Mission and Vision */
+
+.about-purpose {
+  padding: 20px 0;
+  background: var(--about-background);
+}
+
+.about-purpose-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.about-purpose-card {
+  padding: 20px;
+  border: 1px solid var(--about-border);
+  border-radius: 18px;
+  background: var(--about-white);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.about-purpose-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(22, 50, 79, 0.08);
+}
+
+.about-purpose-card-featured {
+  border-color: rgba(79, 131, 204, 0.35);
+  background:
+    radial-gradient(
+      circle at 100% 0,
+      rgba(79, 131, 204, 0.13),
+      transparent 55%
+    ),
+    var(--about-white);
+}
+
+.about-purpose-icon {
+  display: grid;
+  width: 49px;
+  height: 49px;
+  margin-bottom: 13px;
+  place-items: center;
+  border-radius: 14px;
+  color: var(--about-blue);
+  background: var(--about-light-blue);
+}
+
+.about-purpose-label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--about-blue);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+}
+
+.about-purpose-card h3 {
+  margin-bottom: 9px;
+  font-size: 21px;
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.about-purpose-card p {
+  margin-bottom: 0;
+}
+
+/* Values */
+
+.about-values {
+  padding: 20px 0;
+  background: var(--about-white);
+}
+
+.about-values-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.about-value-card {
+  padding: 18px;
+  border: 1px solid var(--about-border);
+  border-radius: 16px;
+  background: var(--about-white);
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.about-value-card:hover {
+  border-color: rgba(79, 131, 204, 0.5);
+  box-shadow: 0 10px 25px rgba(22, 50, 79, 0.07);
+}
+
+.about-value-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 17px;
+}
+
+.about-value-icon {
+  display: grid;
+  width: 45px;
+  height: 45px;
+  place-items: center;
+  border-radius: 13px;
+  color: var(--about-blue);
+  background: var(--about-light-blue);
+}
+
+.about-value-top > span {
+  color: #8b9aaf;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.about-value-card h3 {
+  margin-bottom: 8px;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+.about-value-card p {
+  margin-bottom: 0;
+  font-size: 13px;
+}
+
+/* Care Philosophy */
+
+.about-philosophy {
+  padding: 20px 0;
+  background: var(--about-background);
+}
+
+.about-philosophy-grid {
+  display: grid;
+  grid-template-columns: 0.92fr 1.08fr;
+  align-items: center;
+  gap: 35px;
+}
+
+.about-philosophy-visual {
+  position: relative;
+  min-height: 430px;
+  overflow: hidden;
+  border-radius: 21px;
+  background: var(--about-light-blue);
+}
+
+.about-philosophy-visual > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-visual-badge {
+  position: absolute;
+  right: 13px;
+  bottom: 13px;
+  left: 13px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px;
+  border-radius: 13px;
+  color: var(--about-navy);
+  background: rgba(255, 255, 255, 0.96);
+}
+
+.about-visual-badge svg {
+  flex-shrink: 0;
+  color: var(--about-blue);
+}
+
+.about-visual-badge span {
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.about-philosophy-copy {
+  min-width: 0;
+}
+
+.about-philosophy-list {
+  display: grid;
+  gap: 16px;
+  margin: 18px 0;
+}
+
+.about-philosophy-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.about-list-number {
+  display: grid;
+  width: 37px;
+  height: 37px;
+  flex-shrink: 0;
+  place-items: center;
+  border-radius: 11px;
+  color: var(--about-blue);
+  background: var(--about-light-blue);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.about-philosophy-item h3 {
+  margin-bottom: 5px;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.about-philosophy-item p {
+  margin-bottom: 0;
+  font-size: 13px;
+}
+
+.about-primary-link {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 11px 16px;
+  border: 1px solid var(--about-navy);
+  border-radius: 10px;
+  color: var(--about-white) !important;
+  background: var(--about-navy);
+  font-size: 13px;
+  font-weight: 800;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.about-primary-link:hover {
+  border-color: var(--about-blue);
+  background: var(--about-blue);
+}
+
+.about-primary-link svg {
+  transition: transform 0.25s ease;
+}
+
+.about-primary-link:hover svg {
+  transform: translateX(4px);
+}
+
+/* Journey */
+
+.about-journey {
+  padding: 20px 0;
+  background: var(--about-white);
+}
+
+.about-journey-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.about-journey-card {
+  padding: 18px;
+  border: 1px solid var(--about-border);
+  border-radius: 16px;
+  background: var(--about-white);
+}
+
+.about-journey-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 17px;
+}
+
+.about-journey-top > span {
+  color: #8b9aaf;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.about-journey-icon {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border-radius: 12px;
+  color: var(--about-blue);
+  background: var(--about-light-blue);
+}
+
+.about-journey-card h3 {
+  margin-bottom: 8px;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.about-journey-card p {
+  margin-bottom: 0;
+  font-size: 13px;
+}
+
+.about-journey-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.about-journey-footer p {
+  margin: 0;
+  font-size: 12px;
+}
+
+/* Services Prompt */
+
+.about-services-prompt {
+  padding: 20px 0;
+  background: var(--about-background);
+}
+
+.about-services-prompt-inner {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  padding: 20px;
+  border: 1px solid var(--about-border);
+  border-radius: 18px;
+  background: var(--about-white);
+}
+
+.about-services-prompt-icon {
+  display: grid;
+  width: 55px;
+  height: 55px;
+  flex-shrink: 0;
+  place-items: center;
+  border-radius: 15px;
+  color: var(--about-blue);
+  background: var(--about-light-blue);
+}
+
+.about-services-prompt-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.about-services-prompt-copy .about-eyebrow {
+  margin-bottom: 5px;
+}
+
+.about-services-prompt-copy h2 {
+  margin-bottom: 5px;
+  font-size: 21px;
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.about-services-prompt-copy p {
+  margin-bottom: 0;
+  font-size: 13px;
+}
+
+/* FAQ */
+
+.about-faq {
+  padding: 20px 0;
+  background: var(--about-white);
+}
+
+.about-faq-grid {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  align-items: start;
+  gap: 35px;
+}
+
+.about-faq-intro > div:first-child {
+  margin-bottom: 16px;
+}
+
+.about-faq-list {
+  display: grid;
+  gap: 10px;
+}
+
+.about-faq-item {
+  overflow: hidden;
+  border: 1px solid var(--about-border);
+  border-radius: 13px;
+  background: var(--about-white);
+}
+
+.about-faq-item.is-open {
+  border-color: rgba(79, 131, 204, 0.55);
+}
+
+.about-faq-question {
+  display: flex;
+  width: 100%;
+  min-height: 55px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 13px 15px;
+  border: 0;
+  color: var(--about-navy);
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+}
+
+.about-faq-question span {
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.6;
+}
+
+.about-faq-chevron {
+  flex-shrink: 0;
+  color: var(--about-blue);
+  transition: transform 0.25s ease;
+}
+
+.about-faq-item.is-open .about-faq-chevron {
+  transform: rotate(180deg);
+}
+
+.about-faq-answer {
+  padding: 0 15px 14px;
+  animation: about-faq-reveal 0.25s ease;
+}
+
+.about-faq-answer p {
+  margin-bottom: 0;
+  font-size: 13px;
+}
+
+@keyframes about-faq-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Disclaimer */
+
+.about-disclaimer {
+  padding: 15px 0;
+  border-top: 1px solid var(--about-border);
+  background: var(--about-background);
+}
+
+.about-disclaimer-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+}
+
+.about-disclaimer-inner svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+  color: var(--about-blue);
+}
+
+.about-disclaimer-inner p {
+  margin-bottom: 0;
+  font-size: 12px;
+}
+
+/* Responsive */
+
+@media (max-width: 1050px) {
+  .about-values-grid,
+  .about-journey-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .about-philosophy-grid {
+    gap: 24px;
+  }
+
+  .about-philosophy-visual {
+    min-height: 390px;
+  }
+
+  .about-faq-grid {
+    gap: 25px;
+  }
+}
+
+@media (max-width: 760px) {
+  .about-container {
+    width: min(100% - 30px, 600px);
+  }
+
+  .about-intro-grid,
+  .about-philosophy-grid,
+  .about-faq-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-intro,
+  .about-purpose,
+  .about-values,
+  .about-philosophy,
+  .about-journey,
+  .about-services-prompt,
+  .about-faq {
+    padding: 18px 0;
+  }
+
+  .about-intro-visual {
+    min-height: 330px;
+  }
+
+  .about-philosophy-visual {
+    min-height: 350px;
+  }
+
+  .about-purpose-grid {
+    gap: 13px;
+  }
+
+  .about-values-grid,
+  .about-journey-grid {
+    gap: 12px;
+  }
+
+  .about-journey-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .about-services-prompt-inner {
+    flex-wrap: wrap;
+    padding: 16px;
+  }
+
+  .about-services-prompt-copy {
+    flex-basis: calc(100% - 75px);
+  }
+
+  .about-services-prompt-inner > .about-primary-link {
+    width: 100%;
+  }
+
+  .about-faq-grid {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 520px) {
+  .about-container {
+    width: calc(100% - 28px);
+  }
+
+  .about-intro-copy h2 {
+    font-size: 27px;
+  }
+
+  .about-purpose-grid,
+  .about-values-grid,
+  .about-journey-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-purpose-card,
+  .about-value-card,
+  .about-journey-card {
+    padding: 16px;
+  }
+
+  .about-purpose-card h3 {
+    font-size: 19px;
+  }
+
+  .about-intro-visual {
+    min-height: 290px;
+  }
+
+  .about-philosophy-visual {
+    min-height: 300px;
+  }
+
+  .about-intro-points {
+    gap: 10px;
+  }
+
+  .about-journey-footer,
+  .about-faq-intro {
+    align-items: stretch;
+  }
+
+  .about-journey-footer .about-primary-link,
+  .about-faq-intro .about-primary-link,
+  .about-philosophy-copy > .about-primary-link {
+    width: 100%;
+  }
+
+  .about-faq-question {
+    padding: 12px;
+  }
+
+  .about-faq-question span {
+    font-size: 13px;
+  }
+
+  .about-faq-answer {
+    padding: 0 12px 13px;
+  }
+
+  .about-services-prompt-copy h2 {
+    font-size: 18px;
+  }
+}
+
+/* Reduced Motion */
+
+@media (prefers-reduced-motion: reduce) {
+  .about-page *,
+  .about-page *::before,
+  .about-page *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

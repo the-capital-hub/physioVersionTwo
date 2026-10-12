@@ -1,0 +1,483 @@
+
+/* ========================================
+   REHABICS PREMIUM CTA
+======================================== */
+
+.cta-section {
+  position: relative;
+  width: 100%;
+  padding: 20px 24px;
+  overflow: hidden;
+  background: #f7f1e8;
+  font-family: "Inter", sans-serif;
+}
+
+.cta-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 36px;
+  width: min(1240px, 100%);
+  min-height: 350px;
+  margin: 0 auto;
+  padding: 36px 48px;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 24px;
+  background:
+    radial-gradient(
+      circle at 90% 12%,
+      rgba(223, 165, 139, 0.23),
+      transparent 32%
+    ),
+    linear-gradient(125deg, #fffaf4 0%, #f4e7da 100%);
+  box-shadow: 0 14px 40px rgba(82, 54, 39, 0.06);
+}
+
+.cta-container::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: -135px;
+  right: 140px;
+  width: 310px;
+  height: 310px;
+  border: 1px solid rgba(184, 92, 56, 0.12);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 24px rgba(184, 92, 56, 0.025),
+    0 0 0 48px rgba(184, 92, 56, 0.02);
+  pointer-events: none;
+}
+
+.cta-container::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  right: 0;
+  bottom: 0;
+  width: 50%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(184, 92, 56, 0.35)
+  );
+}
+
+/* Decorative Background */
+
+.cta-orb {
+  position: absolute;
+  z-index: -1;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.cta-orb-one {
+  top: -95px;
+  right: 20%;
+  width: 210px;
+  height: 210px;
+  background: rgba(223, 165, 139, 0.12);
+  filter: blur(2px);
+}
+
+.cta-orb-two {
+  bottom: -130px;
+  left: 28%;
+  width: 260px;
+  height: 260px;
+  border: 1px solid rgba(184, 92, 56, 0.12);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.cta-dot-pattern {
+  position: absolute;
+  z-index: -1;
+  top: 25px;
+  right: 28px;
+  width: 100px;
+  height: 100px;
+  opacity: 0.24;
+  background-image: radial-gradient(#b85c38 1px, transparent 1px);
+  background-size: 12px 12px;
+  mask-image: linear-gradient(135deg, #000, transparent 85%);
+}
+
+/* Content */
+
+.cta-content {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  max-width: 720px;
+}
+
+.cta-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  color: #b85c38;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  line-height: 1.6;
+}
+
+.cta-eyebrow-line {
+  display: inline-block;
+  width: 28px;
+  height: 2px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #b85c38;
+}
+
+.cta-title {
+  max-width: 650px;
+  margin: 0;
+  color: #353535;
+  font-family: "Lora", serif;
+  font-size: clamp(30px, 3.3vw, 45px);
+  font-weight: 700;
+  letter-spacing: -1.4px;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+.cta-description {
+  max-width: 550px;
+  margin: 15px 0 23px;
+  color: #746b64;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* Buttons */
+
+.cta-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 48px;
+  padding: 11px 19px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+  text-decoration: none;
+  transition:
+    background 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.cta-button-primary {
+  color: #fff;
+  background: linear-gradient(135deg, #c56c47, #a94d2c);
+  box-shadow: 0 6px 15px rgba(184, 92, 56, 0.18);
+}
+
+.cta-button-primary svg {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 180ms ease;
+}
+
+.cta-button-primary:hover {
+  color: #fff;
+  background: #984729;
+  box-shadow: 0 9px 22px rgba(152, 71, 41, 0.23);
+  transform: translateY(-2px);
+}
+
+.cta-button-primary:hover svg {
+  transform: translate(2px, -2px);
+}
+
+.cta-button-secondary {
+  border-color: #d9c8b9;
+  color: #55473e;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.cta-button-secondary:hover {
+  border-color: #b85c38;
+  color: #984729;
+  background: #fffaf5;
+  transform: translateY(-2px);
+}
+
+/* Trust Indicators */
+
+.cta-trust {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 13px;
+  margin-top: 24px;
+}
+
+.cta-trust-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #746b64;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.cta-check {
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  color: #a64e2e;
+  background: #f0dfd1;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.cta-trust-divider {
+  width: 1px;
+  height: 16px;
+  background: #ddcdbf;
+}
+
+/* Decorative Brand Mark */
+
+.cta-side-mark {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 230px;
+  height: 230px;
+  flex-shrink: 0;
+  margin-right: 14px;
+}
+
+.cta-mark-ring {
+  position: absolute;
+  border: 1px solid rgba(184, 92, 56, 0.2);
+  border-radius: 50%;
+}
+
+.cta-mark-ring-one {
+  inset: 10px;
+  animation: ctaRotate 28s linear infinite;
+}
+
+.cta-mark-ring-two {
+  inset: 29px;
+  border-style: dashed;
+  border-color: rgba(184, 92, 56, 0.3);
+  animation: ctaRotate 38s linear infinite reverse;
+}
+
+.cta-mark-center {
+  display: grid;
+  place-items: center;
+  width: 112px;
+  height: 112px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  color: #fffaf5;
+  background: linear-gradient(145deg, #dfa58b, #b85c38 75%);
+  box-shadow:
+    0 14px 32px rgba(184, 92, 56, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.cta-mark-center svg {
+  width: 48px;
+  height: 48px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.cta-mark-label {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: max-content;
+  max-width: 100%;
+  color: #986048;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.7px;
+  text-align: center;
+  transform: translateX(-50%);
+}
+
+@keyframes ctaRotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Tablet */
+
+@media (max-width: 900px) {
+  .cta-container {
+    gap: 18px;
+    padding: 30px;
+  }
+
+  .cta-title {
+    font-size: clamp(29px, 4.2vw, 38px);
+  }
+
+  .cta-side-mark {
+    width: 175px;
+    height: 190px;
+    margin-right: 0;
+  }
+
+  .cta-mark-center {
+    width: 92px;
+    height: 92px;
+  }
+
+  .cta-mark-center svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  .cta-trust {
+    gap: 10px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 640px) {
+  .cta-section {
+    padding: 16px;
+  }
+
+  .cta-container {
+    min-height: auto;
+    padding: 27px 21px;
+    border-radius: 19px;
+  }
+
+  .cta-content {
+    max-width: 100%;
+  }
+
+  .cta-eyebrow {
+    gap: 8px;
+    margin-bottom: 13px;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+  }
+
+  .cta-title {
+    font-size: clamp(28px, 7vw, 36px);
+    letter-spacing: -0.8px;
+    line-height: 1.24;
+  }
+
+  .cta-description {
+    margin: 13px 0 19px;
+    font-size: 13px;
+    line-height: 1.75;
+  }
+
+  .cta-actions {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .cta-button {
+    width: 100%;
+    min-height: 46px;
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+
+  .cta-trust {
+    gap: 10px 12px;
+    margin-top: 20px;
+  }
+
+  .cta-trust-item {
+    font-size: 12px;
+  }
+
+  .cta-trust-divider {
+    display: none;
+  }
+
+  .cta-side-mark {
+    display: none;
+  }
+
+  .cta-dot-pattern {
+    top: 15px;
+    right: 13px;
+    width: 65px;
+    height: 65px;
+  }
+}
+
+/* Small Mobile */
+
+@media (max-width: 360px) {
+  .cta-section {
+    padding: 12px;
+  }
+
+  .cta-container {
+    padding: 23px 16px;
+  }
+
+  .cta-title {
+    font-size: 27px;
+  }
+
+  .cta-trust {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 9px;
+  }
+}
+
+/* Reduced Motion */
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-section *,
+  .cta-section *::before,
+  .cta-section *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

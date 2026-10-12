@@ -1,0 +1,339 @@
+
+/* =========================================
+   REHABICS SECTION HEADING
+   Terracotta, ivory and charcoal
+========================================= */
+
+.section-heading-component {
+  --sh-heading-width: 820px;
+  --sh-description-width: 610px;
+
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  max-width: var(--sh-heading-width);
+  margin: 0 auto 24px;
+  color: var(--text-primary, #353535);
+}
+
+/* Alignment */
+
+.section-heading-component.sh-align-center {
+  text-align: center;
+}
+
+.section-heading-component.sh-align-left {
+  margin-left: 0;
+  margin-right: auto;
+  text-align: left;
+}
+
+.section-heading-component.sh-align-right {
+  margin-left: auto;
+  margin-right: 0;
+  text-align: right;
+}
+
+/* Eyebrow */
+
+.sh-eyebrow-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.sh-align-left .sh-eyebrow-row {
+  justify-content: flex-start;
+}
+
+.sh-align-right .sh-eyebrow-row {
+  justify-content: flex-end;
+}
+
+.sh-eyebrow-decoration {
+  display: block;
+  width: 32px;
+  height: 3px;
+  flex: 0 0 auto;
+  border-radius: 20px;
+  background: linear-gradient(
+    90deg,
+    #B85C38 0%,
+    #DFA58B 100%
+  );
+}
+
+.sh-eyebrow {
+  color: var(--accent, #B85C38);
+  font-family: var(--font-body, "Inter", sans-serif);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+
+/* Main heading */
+
+.sh-title {
+  max-width: 100%;
+  margin: 0;
+  color: var(--primary, #353535);
+  font-family: var(--font-heading, "Lora", serif);
+  font-size: clamp(30px, 3.5vw, 44px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.9px;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+
+.sh-align-center .sh-title {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sh-align-right .sh-title {
+  margin-left: auto;
+}
+
+.sh-highlight {
+  color: var(--accent, #B85C38);
+}
+
+/* Decorative accent */
+
+.sh-accent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: fit-content;
+  margin: 12px auto 0;
+}
+
+.sh-align-left .sh-accent {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.sh-align-right .sh-accent {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.sh-accent span {
+  display: block;
+  height: 3px;
+  border-radius: 20px;
+  background: var(--accent, #B85C38);
+}
+
+.sh-accent span:first-child {
+  width: 28px;
+}
+
+.sh-accent span:last-child {
+  width: 8px;
+  opacity: 0.4;
+}
+
+/* Description */
+
+.sh-description {
+  max-width: var(--sh-description-width);
+  margin: 12px auto 0;
+  color: var(--text-secondary, #746B64);
+  font-family: var(--font-body, "Inter", sans-serif);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.75;
+  text-wrap: pretty;
+}
+
+.sh-align-left .sh-description {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.sh-align-right .sh-description {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+/* Compact size */
+
+.sh-size-compact {
+  --sh-heading-width: 700px;
+  --sh-description-width: 520px;
+}
+
+.sh-size-compact .sh-title {
+  font-size: clamp(25px, 3vw, 34px);
+  letter-spacing: -0.6px;
+}
+
+/* Large size */
+
+.sh-size-large {
+  --sh-heading-width: 920px;
+  --sh-description-width: 660px;
+}
+
+.sh-size-large .sh-title {
+  font-size: clamp(34px, 4.3vw, 52px);
+  letter-spacing: -1.1px;
+  line-height: 1.15;
+}
+
+/* Minimal variant */
+
+.sh-variant-minimal .sh-eyebrow-decoration {
+  display: none;
+}
+
+.sh-variant-minimal .sh-eyebrow-row {
+  margin-bottom: 9px;
+}
+
+.sh-variant-minimal .sh-title {
+  font-size: clamp(26px, 3.2vw, 38px);
+  letter-spacing: -0.6px;
+}
+
+.sh-variant-minimal .sh-description {
+  margin-top: 10px;
+}
+
+/* Hero integration */
+
+.hero-heading {
+  max-width: 100%;
+  margin: 0;
+}
+
+.hero-heading .sh-eyebrow-row {
+  justify-content: flex-start;
+  margin-bottom: 16px;
+}
+
+.hero-heading .sh-title {
+  max-width: 620px;
+  font-size: clamp(36px, 4.4vw, 58px);
+  line-height: 1.12;
+  letter-spacing: -1.4px;
+}
+
+.hero-heading .sh-highlight {
+  display: block;
+  color: var(--accent, #B85C38);
+}
+
+.hero-heading .sh-accent {
+  display: none;
+}
+
+.hero-heading .sh-description {
+  max-width: 490px;
+  margin: 16px 0 0;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.hero-heading.sh-size-large .sh-title {
+  font-size: clamp(36px, 4.4vw, 58px);
+}
+
+/* Tablet */
+
+@media (max-width: 768px) {
+  .section-heading-component {
+    margin-bottom: 20px;
+  }
+
+  .sh-eyebrow-row {
+    gap: 8px;
+    margin-bottom: 9px;
+  }
+
+  .sh-eyebrow {
+    letter-spacing: 1px;
+  }
+
+  .sh-eyebrow-decoration {
+    width: 22px;
+  }
+
+  .sh-title {
+    font-size: clamp(27px, 5.5vw, 36px);
+    letter-spacing: -0.5px;
+  }
+
+  .sh-size-large .sh-title {
+    font-size: clamp(30px, 6vw, 42px);
+  }
+
+  .sh-description {
+    margin-top: 10px;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .hero-heading .sh-eyebrow-row {
+    margin-bottom: 12px;
+  }
+
+  .hero-heading .sh-title,
+  .hero-heading.sh-size-large .sh-title {
+    font-size: clamp(34px, 7vw, 46px);
+    letter-spacing: -0.7px;
+  }
+
+  .hero-heading .sh-description {
+    margin-top: 12px;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 480px) {
+  .sh-title {
+    font-size: 27px;
+    line-height: 1.25;
+  }
+
+  .sh-size-compact .sh-title {
+    font-size: 25px;
+  }
+
+  .sh-size-large .sh-title {
+    font-size: 32px;
+  }
+
+  .sh-description {
+    font-size: 13px;
+  }
+
+  .sh-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.8px;
+  }
+
+  .hero-heading .sh-title,
+  .hero-heading.sh-size-large .sh-title {
+    font-size: 34px;
+    line-height: 1.15;
+  }
+}
+
+/* Reduced motion is also handled in JSX */
+
+@media (prefers-reduced-motion: reduce) {
+  .section-heading-component {
+    scroll-behavior: auto;
+  }
+}

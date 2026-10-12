@@ -1,0 +1,510 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap");
+
+.rehabHero {
+  --terracotta: #B85C38;
+  --terracottaDark: #984729;
+  --ivory: #F7F1E8;
+  --clay: #DFA58B;
+  --charcoal: #353535;
+  --muted: #746B64;
+  --border: #E8DED3;
+
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  width: 100%;
+  color: var(--charcoal);
+  font-family: "Inter", sans-serif;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(247, 241, 232, 0.98) 0%,
+      rgba(247, 241, 232, 0.95) 39%,
+      rgba(247, 241, 232, 0.82) 72%,
+      rgba(247, 241, 232, 0.72) 100%
+    ),
+    url("https://images.pexels.com/photos/5793792/pexels-photo-5793792.jpeg")
+      center / cover no-repeat,
+    var(--ivory);
+}
+
+.rehabHero *,
+.rehabHero *::before,
+.rehabHero *::after {
+  box-sizing: border-box;
+}
+
+.rehabHeroContainer {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 1440px);
+  min-height: 550px;
+  margin: 0 auto;
+  padding: 20px 5.7%;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  align-items: center;
+  gap: clamp(28px, 4vw, 58px);
+}
+
+.rehabHero::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 330px;
+  height: 330px;
+  top: -165px;
+  left: -115px;
+  border: 1px solid rgba(184, 92, 56, 0.2);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 25px rgba(184, 92, 56, 0.035),
+    0 0 0 55px rgba(184, 92, 56, 0.025);
+  pointer-events: none;
+}
+
+.rehabHero::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  right: -95px;
+  bottom: -145px;
+  width: 270px;
+  height: 270px;
+  border: 1px solid rgba(184, 92, 56, 0.2);
+  border-radius: 50%;
+  box-shadow: 0 0 0 25px rgba(223, 165, 139, 0.1);
+  pointer-events: none;
+}
+
+.rehabHeroContent {
+  position: relative;
+  z-index: 2;
+  min-width: 0;
+  padding: 10px 0;
+}
+
+.rehabHeroEyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  color: var(--terracotta);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  line-height: 1.5;
+}
+
+.rehabHeroEyebrowIcon {
+  display: grid;
+  width: 35px;
+  height: 35px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid rgba(184, 92, 56, 0.2);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.rehabHeroTitle {
+  margin: 0;
+  font-family: "Lora", Georgia, serif;
+  font-size: clamp(43px, 5vw, 68px);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -2px;
+  overflow-wrap: anywhere;
+}
+
+.rehabHeroTitle span {
+  display: block;
+  margin-top: 5px;
+  color: var(--terracotta);
+  font-style: italic;
+  font-weight: 500;
+}
+
+.rehabHeroDescription {
+  max-width: 485px;
+  margin: 19px 0 22px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+.rehabHeroActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.rehabHeroPrimary,
+.rehabHeroSecondary {
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 17px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    background 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.rehabHeroPrimary {
+  background: var(--terracotta);
+  color: #FFFFFF;
+  box-shadow: 0 6px 18px rgba(184, 92, 56, 0.18);
+}
+
+.rehabHeroPrimary:hover {
+  transform: translateY(-2px);
+  background: var(--terracottaDark);
+  box-shadow: 0 9px 22px rgba(152, 71, 41, 0.2);
+}
+
+.rehabHeroSecondary {
+  border-color: rgba(184, 92, 56, 0.55);
+  background: rgba(255, 255, 255, 0.48);
+  color: var(--terracottaDark);
+}
+
+.rehabHeroSecondary:hover {
+  transform: translateY(-2px);
+  border-color: var(--terracotta);
+  background: #FFFFFF;
+}
+
+.rehabHeroFeatures {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 29px;
+}
+
+.rehabHeroFeature {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+}
+
+.rehabHeroRoundIcon {
+  display: grid;
+  width: 39px;
+  height: 39px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  background: #F5DFD1;
+  color: var(--terracotta);
+}
+
+.rehabHeroFeature > div {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.rehabHeroFeature strong {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.rehabHeroFeature span:not(.rehabHeroRoundIcon) {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.rehabHeroVisual {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  padding: 0 8px 20px 0;
+}
+
+.rehabHeroLeaf {
+  position: absolute;
+  z-index: 2;
+  top: 10%;
+  left: -38px;
+  width: 95px;
+  opacity: 0.9;
+  pointer-events: none;
+  transform: rotate(-8deg);
+}
+
+.rehabHeroLeaf svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.rehabHeroImageFrame {
+  position: relative;
+  height: clamp(390px, 42vw, 490px);
+  overflow: hidden;
+  border: 6px solid rgba(255, 255, 255, 0.88);
+  border-radius: 180px 180px 18px 18px;
+  background: #E9D9CC;
+  box-shadow: 0 22px 55px rgba(53, 53, 53, 0.13);
+}
+
+.rehabHeroImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 600ms ease;
+}
+
+.rehabHeroImageFrame:hover .rehabHeroImage {
+  transform: scale(1.035);
+}
+
+.rehabHeroImageShade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 48%,
+    rgba(36, 27, 21, 0.28) 100%
+  );
+  pointer-events: none;
+}
+
+.rehabHeroImageLabel {
+  position: absolute;
+  right: 13px;
+  bottom: 14px;
+  left: 13px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 13px;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 8px 24px rgba(35, 26, 21, 0.1);
+}
+
+.rehabHeroImageLabel > div {
+  display: grid;
+  gap: 5px;
+}
+
+.rehabHeroImageLabel strong {
+  color: var(--charcoal);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.rehabHeroImageLabel span:not(.rehabHeroRoundIcon) {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.rehabHeroPhotoNote {
+  position: absolute;
+  right: 3px;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.rehabHeroPhotoNote > span {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--terracotta);
+}
+
+@media (min-width: 1441px) {
+  .rehabHeroContainer {
+    padding-right: 80px;
+    padding-left: 80px;
+  }
+}
+
+@media (max-width: 1050px) {
+  .rehabHeroContainer {
+    gap: 25px;
+    min-height: 490px;
+    padding-right: 4%;
+    padding-left: 4%;
+  }
+
+  .rehabHeroTitle {
+    font-size: clamp(39px, 5vw, 54px);
+    letter-spacing: -1.5px;
+  }
+
+  .rehabHeroFeatures {
+    gap: 8px;
+    margin-top: 22px;
+  }
+
+  .rehabHeroFeature {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .rehabHeroImageFrame {
+    height: 405px;
+    border-radius: 140px 140px 16px 16px;
+  }
+
+  .rehabHeroLeaf {
+    left: -20px;
+    width: 75px;
+  }
+}
+
+@media (max-width: 760px) {
+  .rehabHero {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(247, 241, 232, 0.95),
+        rgba(247, 241, 232, 0.89)
+      ),
+      url("https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=900&q=80")
+        center / cover no-repeat,
+      var(--ivory);
+  }
+
+  .rehabHeroContainer {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 26px;
+    min-height: auto;
+    padding: 20px;
+  }
+
+  .rehabHeroContent {
+    padding: 5px 0 0;
+  }
+
+  .rehabHeroEyebrow {
+    margin-bottom: 16px;
+  }
+
+  .rehabHeroTitle {
+    font-size: clamp(40px, 9vw, 57px);
+    letter-spacing: -1.5px;
+  }
+
+  .rehabHeroDescription {
+    margin: 16px 0 20px;
+    font-size: 14px;
+  }
+
+  .rehabHeroFeatures {
+    margin-top: 22px;
+  }
+
+  .rehabHeroFeature {
+    gap: 7px;
+  }
+
+  .rehabHeroFeature .rehabHeroRoundIcon {
+    width: 33px;
+    height: 33px;
+  }
+
+  .rehabHeroVisual {
+    width: 100%;
+    max-width: 560px;
+    justify-self: center;
+    padding-right: 0;
+  }
+
+  .rehabHeroImageFrame {
+    height: clamp(340px, 95vw, 450px);
+    border-radius: 135px 135px 16px 16px;
+  }
+
+  .rehabHeroLeaf {
+    top: 7%;
+    left: -8px;
+    width: 65px;
+  }
+
+  .rehabHeroPhotoNote {
+    right: 0;
+  }
+}
+
+@media (max-width: 430px) {
+  .rehabHeroContainer {
+    padding: 20px 15px;
+  }
+
+  .rehabHeroTitle {
+    font-size: 40px;
+    letter-spacing: -1.2px;
+  }
+
+  .rehabHeroActions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .rehabHeroActions a {
+    width: 100%;
+  }
+
+  .rehabHeroFeatures {
+    gap: 7px;
+  }
+
+  .rehabHeroFeature {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .rehabHeroFeature strong {
+    font-size: 12px;
+  }
+
+  .rehabHeroImageFrame {
+    height: 335px;
+    border-radius: 110px 110px 14px 14px;
+  }
+
+  .rehabHeroImageLabel {
+    right: 9px;
+    bottom: 9px;
+    left: 9px;
+    padding: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rehabHero *,
+  .rehabHero *::before,
+  .rehabHero *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

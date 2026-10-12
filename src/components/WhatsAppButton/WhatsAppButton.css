@@ -1,0 +1,92 @@
+
+.whatsappFloatingButton {
+  position: fixed;
+  right: 22px;
+  bottom: 92px;
+  z-index: 9999;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  min-height: 52px;
+  padding: 7px 17px 7px 8px;
+
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 40px;
+
+  background: #B85C38;
+  color: #FFFFFF;
+
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+
+  box-shadow: 0 8px 24px rgba(53, 53, 53, 0.18);
+
+  transition:
+    transform 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.whatsappFloatingButton:hover {
+  transform: translateY(-3px);
+  background: #984729;
+  box-shadow: 0 12px 28px rgba(53, 53, 53, 0.22);
+}
+
+.whatsappFloatingButton:focus-visible {
+  outline: 3px solid #DFA58B;
+  outline-offset: 4px;
+}
+
+.whatsappIconWrap {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 auto;
+  place-items: center;
+
+  border-radius: 50%;
+  background: #FFFFFF;
+  color: #B85C38;
+}
+
+.whatsappBrandIcon {
+  width: 22px;
+  height: 22px;
+}
+
+.whatsappButtonLabel {
+  white-space: nowrap;
+  line-height: 1.4;
+}
+
+@media (max-width: 600px) {
+  .whatsappFloatingButton {
+    right: 15px;
+    bottom: 18px;
+    gap: 8px;
+    min-height: 48px;
+    padding: 6px 13px 6px 6px;
+    font-size: 12px;
+  }
+
+  .whatsappIconWrap {
+    width: 34px;
+    height: 34px;
+  }
+
+  .whatsappBrandIcon {
+    width: 21px;
+    height: 21px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .whatsappFloatingButton {
+    transition: none;
+  }
+}
