@@ -1,407 +1,630 @@
 
-.rehabServices {
-  --terracotta: #B85C38;
-  --terracottaDark: #984729;
-  --ivory: #F7F1E8;
-  --clay: #DFA58B;
-  --charcoal: #353535;
-  --muted: #746B64;
-  --border: #E8DED3;
+.rh-services-page {
+  --rh-primary: #b85c38;
+  --rh-primary-hover: #984729;
+  --rh-ivory: #f7f1e8;
+  --rh-clay: #dfa58b;
+  --rh-charcoal: #353535;
+  --rh-muted: #746b64;
+  --rh-border: #e8ded3;
+  --rh-white: #ffffff;
 
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  padding: 20px 0;
-  background: #FFFFFF;
-  color: var(--charcoal);
+  background: var(--rh-white);
+  color: var(--rh-charcoal);
   font-family: "Inter", sans-serif;
+  overflow: hidden;
 }
 
-.rehabServices *,
-.rehabServices *::before,
-.rehabServices *::after {
+.rh-services-page *,
+.rh-services-page *::before,
+.rh-services-page *::after {
   box-sizing: border-box;
 }
 
-.rehabServicesContainer {
-  width: min(100%, 1440px);
-  margin: 0 auto;
-  padding: 20px 5.7%;
-}
-
-.rehabServicesHeader {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.7fr);
-  align-items: end;
-  gap: 28px;
-  margin-bottom: 24px;
-}
-
-.rehabServicesIntro {
-  min-width: 0;
-}
-
-.rehabServicesEyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  margin-bottom: 12px;
-  color: var(--terracotta);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  line-height: 1.5;
-}
-
-.rehabServicesEyebrowDot {
-  width: 8px;
-  height: 8px;
-  flex: 0 0 auto;
-  border-radius: 50%;
-  background: var(--terracotta);
-  box-shadow: 0 0 0 5px rgba(184, 92, 56, 0.1);
-}
-
-.rehabServicesTitle {
-  margin: 0;
-  font-family: "Lora", Georgia, serif;
-  font-size: clamp(32px, 3.7vw, 49px);
-  font-weight: 500;
-  line-height: 1.18;
-  letter-spacing: -1.2px;
-}
-
-.rehabServicesTitle span {
-  display: block;
-  color: var(--terracotta);
-  font-style: italic;
-}
-
-.rehabServicesHeaderRight {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 13px;
-  padding-bottom: 3px;
-}
-
-.rehabServicesDescription {
-  max-width: 440px;
-  margin: 0;
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.8;
-}
-
-.rehabServicesViewAll {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  color: var(--terracottaDark);
-  font-size: 12px;
-  font-weight: 700;
-  line-height: 1.5;
-  text-decoration: none;
-  transition: color 180ms ease;
-}
-
-.rehabServicesViewAll svg {
-  transition: transform 180ms ease;
-}
-
-.rehabServicesViewAll:hover {
-  color: var(--terracotta);
-}
-
-.rehabServicesViewAll:hover svg {
-  transform: translateX(4px);
-}
-
-.rehabServicesGrid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-}
-
-.rehabServiceCard {
-  min-width: 0;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  background: #FFFFFF;
-  box-shadow: 0 5px 20px rgba(53, 53, 53, 0.035);
-  transition:
-    transform 180ms ease,
-    box-shadow 180ms ease,
-    border-color 180ms ease;
-}
-
-.rehabServiceCard:hover {
-  transform: translateY(-4px);
-  border-color: rgba(184, 92, 56, 0.4);
-  box-shadow: 0 13px 30px rgba(53, 53, 53, 0.09);
-}
-
-.rehabServiceCardLink {
-  display: flex;
-  height: 100%;
-  flex-direction: column;
-  color: inherit;
-  text-decoration: none;
-}
-
-.rehabServiceImageWrap {
-  position: relative;
-  height: 190px;
-  overflow: hidden;
-  background: var(--ivory);
-}
-
-.rehabServiceImage {
+.rh-services-page img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
-  transition: transform 500ms ease;
 }
 
-.rehabServiceCard:hover .rehabServiceImage {
-  transform: scale(1.055);
+.rh-services-page a {
+  text-decoration: none;
 }
 
-.rehabServiceImageWrap::after {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(53, 53, 53, 0.02) 35%,
-    rgba(53, 53, 53, 0.24) 100%
-  );
-  content: "";
-  pointer-events: none;
+.rh-services-container {
+  width: min(1180px, calc(100% - 40px));
+  margin-inline: auto;
 }
 
-.rehabServiceCategory {
-  position: absolute;
-  z-index: 1;
-  top: 12px;
-  left: 12px;
-  max-width: calc(100% - 24px);
-  overflow: hidden;
-  padding: 8px 10px;
-  border: 1px solid rgba(255, 255, 255, 0.75);
-  border-radius: 7px;
-  background: rgba(255, 255, 255, 0.94);
-  color: var(--terracottaDark);
+.rh-services-eyebrow {
+  display: inline-block;
+  color: var(--rh-primary);
   font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.5px;
-  line-height: 1.4;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  letter-spacing: 1.5px;
+  line-height: 1.5;
+  text-transform: uppercase;
 }
 
-.rehabServiceIcon {
-  position: absolute;
-  z-index: 1;
-  right: 13px;
-  bottom: 12px;
+.rh-services-intro,
+.rh-services-list-section,
+.rh-services-approach,
+.rh-services-process,
+.rh-services-trust {
+  padding-block: 20px;
+}
+
+/* Introduction */
+
+.rh-services-intro {
+  background: var(--rh-white);
+}
+
+.rh-services-intro-grid {
   display: grid;
+  grid-template-columns: 0.92fr 1.08fr;
+  align-items: center;
+  gap: 48px;
+}
+
+.rh-services-intro-copy h2,
+.rh-services-approach-copy h2,
+.rh-services-section-heading h2 {
+  margin: 12px 0;
+  color: var(--rh-charcoal);
+  font-family: "Lora", Georgia, serif;
+  font-size: clamp(30px, 3.5vw, 43px);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.7px;
+}
+
+.rh-services-intro-copy h2 em,
+.rh-services-approach-copy h2 em,
+.rh-services-section-heading h2 em {
+  color: var(--rh-primary);
+  font-weight: 500;
+}
+
+.rh-services-intro-copy > p,
+.rh-services-approach-copy > p {
+  margin: 0;
+  max-width: 520px;
+  color: var(--rh-muted);
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+.rh-services-text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 20px;
+  color: var(--rh-primary);
+  font-size: 14px;
+  font-weight: 700;
+  transition: gap 0.25s ease, color 0.25s ease;
+}
+
+.rh-services-text-link:hover {
+  gap: 14px;
+  color: var(--rh-primary-hover);
+}
+
+.rh-services-intro-visual {
+  position: relative;
+  min-width: 0;
+  height: 350px;
+  border-radius: 18px;
+  background: var(--rh-ivory);
+}
+
+.rh-services-intro-visual > img {
+  border-radius: 18px;
+}
+
+.rh-services-image-note {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  left: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 8px 24px rgba(53, 53, 53, 0.09);
+}
+
+.rh-services-note-icon {
+  display: grid;
+  flex: 0 0 42px;
   width: 42px;
   height: 42px;
   place-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  border-radius: 50%;
-  background: var(--ivory);
-  color: var(--terracotta);
-  box-shadow: 0 5px 15px rgba(53, 53, 53, 0.1);
-  transition:
-    background 180ms ease,
-    color 180ms ease,
-    transform 180ms ease;
+  border-radius: 11px;
+  background: var(--rh-ivory);
+  color: var(--rh-primary);
 }
 
-.rehabServiceCard:hover .rehabServiceIcon {
-  transform: rotate(-5deg);
-  background: var(--terracotta);
-  color: #FFFFFF;
+.rh-services-image-note strong,
+.rh-services-image-note span {
+  display: block;
 }
 
-.rehabServiceCardBody {
+.rh-services-image-note strong {
+  margin-bottom: 4px;
+  color: var(--rh-charcoal);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.rh-services-image-note div > span {
+  color: var(--rh-muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* Section headings */
+
+.rh-services-section-heading {
+  max-width: 650px;
+  margin: 0 auto 24px;
+  text-align: center;
+}
+
+.rh-services-section-heading > p {
+  max-width: 540px;
+  margin: 0 auto;
+  color: var(--rh-muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* Service cards */
+
+.rh-services-list-section {
+  background: var(--rh-ivory);
+}
+
+.rh-services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.rh-service-card {
   display: flex;
-  flex: 1;
+  min-width: 0;
   flex-direction: column;
-  align-items: flex-start;
-  padding: 16px;
+  padding: 20px;
+  border: 1px solid var(--rh-border);
+  border-radius: 16px;
+  background: var(--rh-white);
+  box-shadow: 0 5px 18px rgba(53, 53, 53, 0.035);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
 }
 
-.rehabServiceCardBody h3 {
+.rh-service-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--rh-clay);
+  box-shadow: 0 14px 30px rgba(53, 53, 53, 0.08);
+}
+
+.rh-service-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.rh-service-icon {
+  display: grid;
+  width: 50px;
+  height: 50px;
+  place-items: center;
+  border-radius: 14px;
+  background: var(--rh-ivory);
+  color: var(--rh-primary);
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+.rh-service-card:hover .rh-service-icon {
+  background: var(--rh-primary);
+  color: var(--rh-white);
+}
+
+.rh-service-number {
+  color: #b7a79a;
+  font-family: "Lora", Georgia, serif;
+  font-size: 17px;
+}
+
+.rh-service-card h3 {
+  margin: 0 0 10px;
+  color: var(--rh-charcoal);
+  font-family: "Lora", Georgia, serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.rh-service-card > p {
+  margin: 0 0 16px;
+  color: var(--rh-muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.rh-service-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: auto;
+  padding-bottom: 18px;
+}
+
+.rh-service-tags span {
+  padding: 7px 9px;
+  border: 1px solid var(--rh-border);
+  border-radius: 7px;
+  background: #fffdfa;
+  color: var(--rh-muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.rh-service-card-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-top: 14px;
+  border-top: 1px solid var(--rh-border);
+  color: var(--rh-primary);
+  font-size: 13px;
+  font-weight: 700;
+  transition: color 0.2s ease;
+}
+
+.rh-service-card-link:hover {
+  color: var(--rh-primary-hover);
+}
+
+/* Our approach */
+
+.rh-services-approach {
+  background: var(--rh-white);
+}
+
+.rh-services-approach-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 48px;
+}
+
+.rh-services-approach-visual {
+  position: relative;
+  height: 350px;
+  min-width: 0;
+  border-radius: 18px;
+  background: var(--rh-ivory);
+}
+
+.rh-services-approach-visual > img {
+  border-radius: 18px;
+}
+
+.rh-services-visual-badge {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  left: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px;
+  border-radius: 11px;
+  background: var(--rh-white);
+  color: var(--rh-primary);
+  box-shadow: 0 8px 24px rgba(53, 53, 53, 0.08);
+}
+
+.rh-services-visual-badge span {
+  color: var(--rh-charcoal);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.rh-services-approach-copy h2 {
+  max-width: 480px;
+}
+
+.rh-services-benefit-list {
+  display: grid;
+  gap: 13px;
+  margin: 20px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rh-services-benefit-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: var(--rh-charcoal);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.rh-services-benefit-list li svg {
+  flex: 0 0 19px;
+  margin-top: 2px;
+  color: var(--rh-primary);
+}
+
+.rh-services-button {
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 18px;
+  border: 1px solid var(--rh-primary);
+  border-radius: 10px;
+  background: var(--rh-primary);
+  color: var(--rh-white);
+  font-size: 13px;
+  font-weight: 700;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.rh-services-button:hover {
+  transform: translateY(-2px);
+  border-color: var(--rh-primary-hover);
+  background: var(--rh-primary-hover);
+}
+
+/* Care process */
+
+.rh-services-process {
+  background: var(--rh-ivory);
+}
+
+.rh-services-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.rh-services-step {
+  padding: 20px;
+  border: 1px solid var(--rh-border);
+  border-radius: 15px;
+  background: var(--rh-white);
+}
+
+.rh-services-step-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.rh-services-step-icon {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--rh-ivory);
+  color: var(--rh-primary);
+}
+
+.rh-services-step-number {
+  color: var(--rh-primary);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.rh-services-step h3 {
   margin: 0 0 9px;
+  color: var(--rh-charcoal);
   font-family: "Lora", Georgia, serif;
   font-size: 19px;
   font-weight: 600;
   line-height: 1.4;
 }
 
-.rehabServiceCardBody p {
-  margin: 0 0 15px;
-  color: var(--muted);
-  font-size: 12px;
+.rh-services-step p {
+  margin: 0;
+  color: var(--rh-muted);
+  font-size: 13px;
   line-height: 1.8;
 }
 
-.rehabServiceLearnMore {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: auto;
-  color: var(--terracottaDark);
-  font-size: 12px;
-  font-weight: 700;
-  line-height: 1.5;
+/* Trust section */
+
+.rh-services-trust {
+  background: var(--rh-white);
 }
 
-.rehabServiceLearnMore svg {
-  transition: transform 180ms ease;
-}
-
-.rehabServiceCard:hover .rehabServiceLearnMore svg {
-  transform: translate(2px, -2px);
-}
-
-.rehabServiceCardLink:focus-visible {
-  outline: 3px solid var(--terracotta);
-  outline-offset: -3px;
-  border-radius: 16px;
-}
-
-.rehabServicesBottom {
+.rh-services-trust-inner {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 14px;
-  margin-top: 24px;
+  gap: 18px;
+  padding: 20px;
+  border: 1px solid var(--rh-border);
+  border-radius: 16px;
+  background: #fffdfa;
 }
 
-.rehabServicesBottom p {
-  margin: 0;
-  color: var(--muted);
+.rh-services-trust-icon {
+  display: grid;
+  flex: 0 0 52px;
+  width: 52px;
+  height: 52px;
+  place-items: center;
+  border-radius: 13px;
+  background: var(--rh-ivory);
+  color: var(--rh-primary);
+}
+
+.rh-services-trust-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.rh-services-trust-copy h2 {
+  margin: 0 0 6px;
+  color: var(--rh-charcoal);
   font-family: "Lora", Georgia, serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.rh-services-trust-copy p {
+  margin: 0;
+  color: var(--rh-muted);
   font-size: 13px;
-  font-style: italic;
-  line-height: 1.6;
-  text-align: center;
+  line-height: 1.7;
 }
 
-.rehabServicesBottomLine {
-  width: 36px;
-  height: 1px;
+.rh-services-trust-link {
+  display: inline-flex;
   flex: 0 0 auto;
-  background: var(--clay);
+  align-items: center;
+  gap: 8px;
+  color: var(--rh-primary);
+  font-size: 13px;
+  font-weight: 700;
+  transition: gap 0.2s ease;
 }
 
-@media (min-width: 1441px) {
-  .rehabServicesContainer {
-    padding-right: 80px;
-    padding-left: 80px;
+.rh-services-trust-link:hover {
+  gap: 12px;
+}
+
+/* Responsive layout */
+
+@media (max-width: 900px) {
+  .rh-services-intro-grid,
+  .rh-services-approach-grid {
+    gap: 26px;
+  }
+
+  .rh-services-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .rh-services-intro-visual,
+  .rh-services-approach-visual {
+    height: 310px;
+  }
+
+  .rh-services-intro-copy h2,
+  .rh-services-approach-copy h2,
+  .rh-services-section-heading h2 {
+    font-size: clamp(28px, 4vw, 36px);
   }
 }
 
-@media (max-width: 1000px) {
-  .rehabServicesContainer {
-    padding-right: 4%;
-    padding-left: 4%;
+@media (max-width: 640px) {
+  .rh-services-container {
+    width: min(100% - 28px, 1180px);
   }
 
-  .rehabServicesHeader {
-    grid-template-columns: minmax(0, 1fr) minmax(220px, 0.8fr);
+  .rh-services-intro,
+  .rh-services-list-section,
+  .rh-services-approach,
+  .rh-services-process,
+  .rh-services-trust {
+    padding-block: 18px;
+  }
+
+  .rh-services-intro-grid,
+  .rh-services-approach-grid {
+    grid-template-columns: 1fr;
     gap: 20px;
   }
 
-  .rehabServicesGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 15px;
+  .rh-services-intro-copy h2,
+  .rh-services-approach-copy h2,
+  .rh-services-section-heading h2 {
+    font-size: 30px;
+    line-height: 1.25;
   }
 
-  .rehabServiceImageWrap {
-    height: 200px;
-  }
-}
-
-@media (max-width: 650px) {
-  .rehabServices {
-    padding: 20px 0;
+  .rh-services-intro-copy > p,
+  .rh-services-approach-copy > p {
+    font-size: 14px;
+    line-height: 1.8;
   }
 
-  .rehabServicesContainer {
-    padding: 20px;
+  .rh-services-intro-visual,
+  .rh-services-approach-visual {
+    height: 260px;
   }
 
-  .rehabServicesHeader {
-    grid-template-columns: minmax(0, 1fr);
+  .rh-services-grid,
+  .rh-services-steps {
+    grid-template-columns: 1fr;
     gap: 12px;
+  }
+
+  .rh-service-card,
+  .rh-services-step {
+    padding: 18px;
+  }
+
+  .rh-services-section-heading {
     margin-bottom: 20px;
+    text-align: left;
   }
 
-  .rehabServicesTitle {
-    font-size: clamp(32px, 8vw, 43px);
+  .rh-services-section-heading > p {
+    margin-inline: 0;
   }
 
-  .rehabServicesHeaderRight {
-    gap: 10px;
+  .rh-services-trust-inner {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 18px;
   }
 
-  .rehabServicesDescription {
-    font-size: 13px;
+  .rh-services-trust-copy {
+    flex: 1 1 calc(100% - 66px);
   }
 
-  .rehabServicesGrid {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 15px;
-  }
-
-  .rehabServiceImageWrap {
-    height: 220px;
-  }
-
-  .rehabServiceCardBody {
-    padding: 16px;
-  }
-
-  .rehabServiceCardBody h3 {
-    font-size: 20px;
-  }
-
-  .rehabServicesBottom {
-    gap: 9px;
-    margin-top: 20px;
-  }
-
-  .rehabServicesBottomLine {
-    width: 18px;
-  }
-}
-
-@media (max-width: 380px) {
-  .rehabServicesContainer {
-    padding: 20px 14px;
-  }
-
-  .rehabServiceImageWrap {
-    height: 190px;
-  }
-
-  .rehabServiceCardBody h3 {
-    font-size: 18px;
+  .rh-services-trust-link {
+    margin-left: 64px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .rehabServices *,
-  .rehabServices *::before,
-  .rehabServices *::after {
+  .rh-services-page *,
+  .rh-services-page *::before,
+  .rh-services-page *::after {
+    scroll-behavior: auto !important;
     animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
 }

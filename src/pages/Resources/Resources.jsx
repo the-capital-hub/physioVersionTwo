@@ -1,685 +1,528 @@
-
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import {
-  ArrowRight,
+  ArrowUpRight,
   BookOpen,
-  Search,
-  Clock3,
-  HeartPulse,
   Activity,
-  Dumbbell,
+  HeartPulse,
+  PersonStanding,
+  Brain,
   ShieldCheck,
-  X,
-  ChevronDown,
-  CalendarDays,
-  Sparkles,
-  Bookmark,
+  Clock3,
+  Search,
+  Plus,
+  Minus,
+  Lightbulb,
+  MoveRight,
 } from "lucide-react";
 
-import HeroSection from "../../components/HeroSection/HeroSection";
-import SectionHeading from "../../components/SectionHeading/SectionHeading";
-import CTASection from "../../components/CTASection/CTASection";
-
 import "./Resources.css";
-
-const resources = [
-  {
-    id: 1,
-    category: "Pain Management",
-    title: "Understanding Back Pain",
-    description:
-      "Learn about common causes of back discomfort, daily habits that may affect your spine, and when to seek professional care.",
-    readTime: "6 min read",
-    type: "Patient Guide",
-    icon: HeartPulse,
-    color: "blue",
-    featured: true,
-    content: [
-      {
-        heading: "Understand the possible causes",
-        text: "Back discomfort can have several causes, including muscle strain, prolonged sitting, changes in activity, or other medical conditions. A proper assessment helps identify what may be contributing to your symptoms.",
-      },
-      {
-        heading: "Build healthier daily habits",
-        text: "Take regular movement breaks, change positions comfortably, and gradually return to activities that feel manageable. Avoid forcing movements that significantly increase your symptoms.",
-      },
-      {
-        heading: "When to seek professional advice",
-        text: "Consult a qualified healthcare professional if pain persists, repeatedly returns, or affects everyday activities. Seek urgent medical attention for severe back pain with new bladder or bowel problems, numbness around the groin, or significant new leg weakness.",
-      },
-    ],
-  },
-  {
-    id: 2,
-    category: "Posture and Mobility",
-    title: "A Practical Guide to Better Posture",
-    description:
-      "Explore comfortable sitting positions, workstation habits, and simple ways to add movement to your day.",
-    readTime: "5 min read",
-    type: "Wellness Guide",
-    icon: Activity,
-    color: "purple",
-    featured: false,
-    content: [
-      {
-        heading: "Focus on comfortable movement",
-        text: "There is no single perfect posture for everyone. Aim for a comfortable position and change it regularly rather than holding one rigid position throughout the day.",
-      },
-      {
-        heading: "Improve your workspace",
-        text: "Keep frequently used items within easy reach, position your screen comfortably, and support your feet when practical. Adjust your setup to suit your body.",
-      },
-      {
-        heading: "Take regular breaks",
-        text: "Short movement breaks can help reduce stiffness. Try standing, walking, or gently moving your shoulders according to your comfort and ability.",
-      },
-    ],
-  },
-  {
-    id: 3,
-    category: "Exercise and Recovery",
-    title: "Returning to Exercise Safely",
-    description:
-      "Understand the importance of gradual progression, recovery time, and adapting activity to your current ability.",
-    readTime: "7 min read",
-    type: "Recovery Guide",
-    icon: Dumbbell,
-    color: "orange",
-    featured: false,
-    content: [
-      {
-        heading: "Start at a manageable level",
-        text: "Begin with activity that suits your current fitness, symptoms, and functional ability. Increase duration or intensity gradually instead of changing everything at once.",
-      },
-      {
-        heading: "Pay attention to your response",
-        text: "Notice how you feel during activity and afterwards. If symptoms worsen significantly or do not settle, reduce the activity and seek advice when needed.",
-      },
-      {
-        heading: "Personalise your recovery",
-        text: "Recovery plans vary according to injury, surgery, health history, and goals. A physiotherapist can help you choose suitable exercises and progress them safely.",
-      },
-    ],
-  },
-  {
-    id: 4,
-    category: "Injury Prevention",
-    title: "Everyday Habits for Injury Prevention",
-    description:
-      "Discover practical principles for preparing for activity, managing workload, and building strength over time.",
-    readTime: "4 min read",
-    type: "Prevention Guide",
-    icon: ShieldCheck,
-    color: "green",
-    featured: false,
-    content: [
-      {
-        heading: "Prepare for your activity",
-        text: "Begin unfamiliar or demanding activities at an appropriate level. Use a gradual warm up that suits the activity and your physical abilities.",
-      },
-      {
-        heading: "Increase workload gradually",
-        text: "Avoid sudden large increases in training volume or physical demands. Allow time to adapt and recover between demanding sessions.",
-      },
-      {
-        heading: "Respond to warning signs",
-        text: "Do not ignore persistent pain, swelling, instability, or reduced function. A healthcare professional can assess your symptoms and guide your next steps.",
-      },
-    ],
-  },
-  {
-    id: 5,
-    category: "Pain Management",
-    title: "Living Better with Joint Stiffness",
-    description:
-      "Learn about gentle movement, pacing daily activities, and seeking support for ongoing joint symptoms.",
-    readTime: "6 min read",
-    type: "Patient Guide",
-    icon: HeartPulse,
-    color: "blue",
-    featured: false,
-    content: [
-      {
-        heading: "Keep movement comfortable",
-        text: "Gentle movement may help some people manage stiffness. Choose activities suited to your ability and avoid pushing through severe or unusual pain.",
-      },
-      {
-        heading: "Balance activity and rest",
-        text: "Break demanding tasks into manageable parts and adjust your routine according to your symptoms, energy, and recovery needs.",
-      },
-      {
-        heading: "Get the right assessment",
-        text: "Persistent or unexplained joint stiffness deserves professional assessment, particularly when accompanied by warmth, redness, swelling, or significant loss of function.",
-      },
-    ],
-  },
-  {
-    id: 6,
-    category: "Exercise and Recovery",
-    title: "Preparing for Physiotherapy",
-    description:
-      "Find out what information to bring to an appointment and how to make the most of your first assessment.",
-    readTime: "3 min read",
-    type: "Getting Started",
-    icon: BookOpen,
-    color: "purple",
-    featured: false,
-    content: [
-      {
-        heading: "Share your health history",
-        text: "Be ready to discuss your symptoms, when they started, relevant medical conditions, previous injuries, medicines, and any treatment you have received.",
-      },
-      {
-        heading: "Describe your goals",
-        text: "Tell your physiotherapist which everyday activities you want to improve, such as walking comfortably, returning to sport, or managing work tasks.",
-      },
-      {
-        heading: "Ask questions",
-        text: "Ask about your assessment, treatment options, expected progress, home exercises, and when you should seek further medical advice.",
-      },
-    ],
-  },
-];
+import HeroSection from "../../components/HeroSection/HeroSection";
+import CTASection from "../../components/CTASection/CTASection";
 
 const categories = [
   "All Resources",
   "Pain Management",
-  "Posture and Mobility",
-  "Exercise and Recovery",
-  "Injury Prevention",
+  "Movement",
+  "Posture",
+  "Recovery",
+];
+
+const resources = [
+  {
+    category: "Pain Management",
+    readTime: "5 min read",
+    title: "Understanding Everyday Back Pain",
+    description:
+      "Learn about common contributors to back discomfort and when professional guidance may help.",
+    icon: HeartPulse,
+    label: "PAIN MANAGEMENT",
+  },
+  {
+    category: "Posture",
+    readTime: "4 min read",
+    title: "Building Healthier Posture Habits",
+    description:
+      "Simple ways to review your sitting setup and bring more movement into your workday.",
+    icon: PersonStanding,
+    label: "POSTURE",
+  },
+  {
+    category: "Movement",
+    readTime: "6 min read",
+    title: "Why Everyday Movement Matters",
+    description:
+      "Explore how regular, appropriate movement can support mobility and everyday function.",
+    icon: Activity,
+    label: "MOVEMENT",
+  },
+  {
+    category: "Recovery",
+    readTime: "5 min read",
+    title: "Making Sense of Your Recovery Journey",
+    description:
+      "Understand why progress can vary and how realistic goals can support your rehabilitation.",
+    icon: Brain,
+    label: "RECOVERY",
+  },
+  {
+    category: "Pain Management",
+    readTime: "4 min read",
+    title: "Managing Neck Discomfort at Work",
+    description:
+      "Review workstation habits, regular movement breaks and signs that need professional advice.",
+    icon: HeartPulse,
+    label: "PAIN MANAGEMENT",
+  },
+  {
+    category: "Movement",
+    readTime: "5 min read",
+    title: "Staying Active at Your Own Pace",
+    description:
+      "Discover practical ways to build activity gradually around your current abilities.",
+    icon: PersonStanding,
+    label: "MOVEMENT",
+  },
+];
+
+const quickTips = [
+  {
+    number: "01",
+    title: "Take regular movement breaks",
+    description:
+      "Change positions regularly during long periods of sitting or working.",
+  },
+  {
+    number: "02",
+    title: "Listen to your body",
+    description:
+      "Adjust an activity if it causes unusual or increasing discomfort.",
+  },
+  {
+    number: "03",
+    title: "Build habits gradually",
+    description:
+      "Start with manageable activities and increase them according to your ability and professional advice.",
+  },
 ];
 
 const faqs = [
   {
-    question: "Are these resources a replacement for physiotherapy?",
+    question: "Who are these resources for?",
     answer:
-      "No. These guides provide general educational information. They cannot diagnose a condition or replace an individual assessment and personalised treatment plan.",
+      "These educational resources are intended for people who want to learn more about movement, posture, pain and rehabilitation. Individual needs vary, so a resource may not be suitable for every person.",
   },
   {
-    question: "How do I know which guide is right for me?",
+    question: "Can these articles replace physiotherapy?",
     answer:
-      "Start with the topic that matches your question. If you have ongoing pain, a recent injury, recent surgery, or uncertainty about exercise, consult a qualified healthcare professional for individual guidance.",
+      "No. General information cannot replace an individual assessment or treatment plan. A qualified healthcare professional can help you understand your specific needs.",
   },
   {
-    question: "Can I start exercises from a guide immediately?",
+    question: "Can I start an exercise after reading an article?",
     answer:
-      "Not every exercise is suitable for every person. Consider your health history and current symptoms, and ask a physiotherapist for guidance if you are unsure whether an activity is appropriate.",
+      "Choose activities appropriate for your abilities and existing advice from your healthcare professional. Stop if you experience concerning symptoms and seek guidance when needed.",
   },
   {
-    question: "When should I seek urgent medical attention?",
+    question: "When should I seek medical help?",
     answer:
-      "Seek urgent help for symptoms such as new loss of bladder or bowel control with back pain, numbness around the groin, sudden major weakness, severe breathing difficulty, or other sudden severe symptoms.",
+      "Seek urgent medical assessment for severe or sudden symptoms, significant new weakness, or other alarming changes. Do not delay urgent care while reading online information.",
   },
 ];
 
-function Resources() {
-  const [searchTerm, setSearchTerm] = useState("");
+export default function Resources() {
   const [activeCategory, setActiveCategory] = useState("All Resources");
-  const [selectedResource, setSelectedResource] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
   const [openFaq, setOpenFaq] = useState(0);
+  const reduceMotion = useReducedMotion();
 
-  const filteredResources = useMemo(() => {
-    const query = searchTerm.trim().toLowerCase();
+  const reveal = reduceMotion
+    ? {}
+    : {
+        initial: { opacity: 0, y: 20 },
+        whileInView: { opacity: 1, y: 0 },
+        viewport: { once: true, amount: 0.12 },
+        transition: { duration: 0.5 },
+      };
 
-    return resources.filter((resource) => {
-      const matchesCategory =
-        activeCategory === "All Resources" ||
-        resource.category === activeCategory;
+  const filteredResources = resources.filter((resource) => {
+    const matchesCategory =
+      activeCategory === "All Resources" ||
+      resource.category === activeCategory;
 
-      const matchesSearch =
-        !query ||
-        resource.title.toLowerCase().includes(query) ||
-        resource.description.toLowerCase().includes(query) ||
-        resource.category.toLowerCase().includes(query);
+    const query = searchQuery.trim().toLowerCase();
 
-      return matchesCategory && matchesSearch;
-    });
-  }, [searchTerm, activeCategory]);
+    const matchesSearch =
+      !query ||
+      resource.title.toLowerCase().includes(query) ||
+      resource.description.toLowerCase().includes(query) ||
+      resource.category.toLowerCase().includes(query);
 
-  const featuredResource = resources.find((resource) => resource.featured);
-  const FeaturedIcon = featuredResource.icon;
+    return matchesCategory && matchesSearch;
+  });
 
   return (
-    <main className="resources-page">
+    <main className="rehabResourcesPage">
       <HeroSection
-        eyebrow="PATIENT EDUCATION"
-        title="Knowledge for a "
-        highlight="Healthier You"
-        description="Explore practical physiotherapy guides, recovery insights, and everyday wellness advice to help you make more informed decisions about your health."
-        primaryText="Explore Resources"
-        primaryLink="#resource-library"
+        eyebrow="LEARN. MOVE. FEEL BETTER."
+        title="Knowledge for"
+        highlight="your recovery journey."
+        description="Explore practical information about movement, posture, pain management and rehabilitation. Build your understanding and take informed steps towards better everyday movement."
+        buttonText="Explore Resources"
+        buttonLink="#resourceLibrary"
         secondaryText="Book an Appointment"
         secondaryLink="/appointment"
-        image="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1200&q=85"
-        imageAlt="Physiotherapy and movement training"
-        imageLabel="Learn. Move. Recover."
-        imageDescription="Reliable guidance for your movement and recovery journey."
-        showStats={false}
+        image="https://images.pexels.com/photos/4506109/pexels-photo-4506109.jpeg"
+        imageAlt="Physiotherapy professional guiding a patient through movement"
+        imageLabel="Small steps make a difference"
+        imageDescription="Learn more about your movement and wellbeing"
+        features={[
+          "Practical educational guides",
+          "Everyday movement advice",
+          "Information for informed choices",
+        ]}
       />
 
-      <section className="resources-intro section-space">
-        <div className="resources-container">
-          <SectionHeading
-            eyebrow="YOUR WELLNESS LIBRARY"
-            title="Understand Your Body"
-            highlight="With Confidence"
-            description="Explore clear, practical educational content designed to support your conversations with healthcare professionals."
-          />
+      <section className="rrSection rrIntro">
+        <div className="rrContainer rrIntroGrid">
+          <motion.div className="rrIntroCopy" {...reveal}>
+            <span className="rrEyebrow">YOUR LEARNING SPACE</span>
+            <h2>
+              Understand your body.
+              <span> Make informed choices.</span>
+            </h2>
+            <p>
+              Finding reliable information can help you ask better questions
+              and understand your care options. Our resource library brings
+              movement and rehabilitation topics together in one place.
+            </p>
+            <p>
+              Use these guides as a starting point for learning, not as a
+              substitute for individual medical advice.
+            </p>
+            <Link className="rrTextLink" to="/appointment">
+              Discuss your concerns
+              <ArrowUpRight size={18} />
+            </Link>
+          </motion.div>
 
-          <div className="resources-benefits">
-            <div className="resource-benefit">
-              <span className="benefit-icon">
+          <motion.div className="rrIntroVisual" {...reveal}>
+            <img
+              src="https://images.pexels.com/photos/3768916/pexels-photo-3768916.jpeg"
+              alt="Healthcare professional discussing a movement exercise"
+              loading="lazy"
+            />
+            <div className="rrIntroNote">
+              <span className="rrIntroNoteIcon">
                 <BookOpen size={22} />
               </span>
               <div>
-                <h3>Easy to Understand</h3>
-                <p>Helpful information in simple language.</p>
+                <strong>Learn at your own pace</strong>
+                <p>Information to support better conversations</p>
               </div>
             </div>
-
-            <div className="resource-benefit">
-              <span className="benefit-icon">
-                <HeartPulse size={22} />
-              </span>
-              <div>
-                <h3>Patient Focused</h3>
-                <p>Learn about movement, comfort, and recovery.</p>
-              </div>
-            </div>
-
-            <div className="resource-benefit">
-              <span className="benefit-icon">
-                <ShieldCheck size={22} />
-              </span>
-              <div>
-                <h3>Safety First</h3>
-                <p>Know when professional guidance matters.</p>
-              </div>
-            </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      <section className="featured-resource section-space">
-        <div className="resources-container">
-          <div className="featured-card">
-            <div className="featured-copy">
-              <span className="resource-eyebrow">
-                <Sparkles size={15} />
-                FEATURED PATIENT GUIDE
-              </span>
-
-              <h2>{featuredResource.title}</h2>
-
-              <p>{featuredResource.description}</p>
-
-              <div className="resource-meta">
-                <span>
-                  <BookOpen size={15} />
-                  {featuredResource.type}
-                </span>
-                <span>
-                  <Clock3 size={15} />
-                  {featuredResource.readTime}
-                </span>
-              </div>
-
-              <button
-                className="resource-button primary-resource-button"
-                onClick={() => setSelectedResource(featuredResource)}
-                type="button"
-              >
-                Read the Guide <ArrowRight size={17} />
-              </button>
-            </div>
-
-            <div className="featured-visual">
-              <div className="featured-image-wrap">
-                <img
-                  src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=1000&q=85"
-                  alt="Person practising a gentle stretching exercise"
-                  loading="lazy"
-                />
-              </div>
-              <div className="featured-floating-card">
-                <span className="featured-floating-icon">
-                  <FeaturedIcon size={20} />
-                </span>
-                <div>
-                  <strong>Start with the basics</strong>
-                  <span>Small steps toward better understanding</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section
-        className="resource-library section-space"
-        id="resource-library"
-      >
-        <div className="resources-container">
-          <SectionHeading
-            eyebrow="RESOURCE LIBRARY"
-            title="Find the Guidance"
-            highlight="You Need"
-            description="Search our educational library or select a category to explore topics that matter to you."
-          />
-
-          <div className="resource-search-wrap">
-            <Search size={20} />
-            <input
-              type="search"
-              aria-label="Search patient resources"
-              placeholder="Search pain, posture, recovery..."
-              value={searchTerm}
-              onChange={(event) => setSearchTerm(event.target.value)}
-            />
-            {searchTerm && (
-              <button
-                className="clear-search"
-                type="button"
-                onClick={() => setSearchTerm("")}
-                aria-label="Clear search"
-              >
-                <X size={17} />
-              </button>
-            )}
-          </div>
-
-          <div className="resource-filters" aria-label="Resource categories">
-            {categories.map((category) => (
-              <button
-                key={category}
-                type="button"
-                className={`resource-filter ${
-                  activeCategory === category ? "active" : ""
-                }`}
-                onClick={() => setActiveCategory(category)}
-                aria-pressed={activeCategory === category}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-
-          <div className="resource-results-heading">
-            <div>
-              <span className="resource-results-label">EXPLORE ARTICLES</span>
-              <h3>
-                {activeCategory === "All Resources"
-                  ? "All Patient Resources"
-                  : activeCategory}
-              </h3>
-            </div>
-            <span className="resource-count">
-              {filteredResources.length}{" "}
-              {filteredResources.length === 1 ? "resource" : "resources"}
-            </span>
-          </div>
-
-          <motion.div layout className="resources-grid">
-            <AnimatePresence mode="popLayout">
-              {filteredResources.map((resource) => {
-                const ResourceIcon = resource.icon;
-
-                return (
-                  <motion.article
-                    layout
-                    key={resource.id}
-                    className="resource-card"
-                    initial={{ opacity: 0, y: 18 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    transition={{ duration: 0.25 }}
-                  >
-                    <div className={`resource-card-icon ${resource.color}`}>
-                      <ResourceIcon size={23} strokeWidth={1.8} />
-                    </div>
-
-                    <div className="resource-card-topline">
-                      <span className="resource-type">{resource.type}</span>
-                      <span className="resource-read-time">
-                        <Clock3 size={13} />
-                        {resource.readTime}
-                      </span>
-                    </div>
-
-                    <span className="resource-category">
-                      {resource.category}
-                    </span>
-
-                    <h3>{resource.title}</h3>
-                    <p>{resource.description}</p>
-
-                    <button
-                      className="resource-read-link"
-                      type="button"
-                      onClick={() => setSelectedResource(resource)}
-                    >
-                      Read Article <ArrowRight size={16} />
-                    </button>
-                  </motion.article>
-                );
-              })}
-            </AnimatePresence>
+      <section className="rrSection rrLibrary" id="resourceLibrary">
+        <div className="rrContainer">
+          <motion.div className="rrSectionHeading" {...reveal}>
+            <span className="rrEyebrow">RESOURCE LIBRARY</span>
+            <h2>
+              Find information
+              <span> that matters to you</span>
+            </h2>
+            <p>
+              Browse educational topics and choose what you would like to learn
+              about today.
+            </p>
           </motion.div>
 
+          <motion.div className="rrLibraryTools" {...reveal}>
+            <label className="rrSearchBox">
+              <Search size={19} aria-hidden="true" />
+              <input
+                type="search"
+                value={searchQuery}
+                onChange={(event) => setSearchQuery(event.target.value)}
+                placeholder="Search resources"
+                aria-label="Search resources"
+              />
+            </label>
+
+            <div className="rrCategoryFilters" aria-label="Filter resources">
+              {categories.map((category) => (
+                <button
+                  type="button"
+                  key={category}
+                  className={`rrFilterButton ${
+                    activeCategory === category ? "active" : ""
+                  }`}
+                  aria-pressed={activeCategory === category}
+                  onClick={() => setActiveCategory(category)}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
+          </motion.div>
+
+          <div className="rrResourceGrid" aria-live="polite">
+            {filteredResources.map((resource, index) => {
+              const Icon = resource.icon;
+
+              return (
+                <motion.article
+                  className="rrResourceCard"
+                  key={resource.title}
+                  {...reveal}
+                  transition={{
+                    duration: 0.45,
+                    delay: reduceMotion ? 0 : index * 0.05,
+                  }}
+                >
+                  <div className="rrResourceCardTop">
+                    <span className="rrResourceIcon">
+                      <Icon size={24} strokeWidth={1.8} />
+                    </span>
+                    <span className="rrReadTime">
+                      <Clock3 size={14} />
+                      {resource.readTime}
+                    </span>
+                  </div>
+
+                  <span className="rrResourceCategory">
+                    {resource.label}
+                  </span>
+                  <h3>{resource.title}</h3>
+                  <p>{resource.description}</p>
+
+                  <Link
+                    className="rrResourceLink"
+                    to="/contact"
+                    aria-label={`Ask our team about ${resource.title}`}
+                  >
+                    Ask our team about this topic
+                    <ArrowUpRight size={17} />
+                  </Link>
+                </motion.article>
+              );
+            })}
+          </div>
+
           {filteredResources.length === 0 && (
-            <div className="resource-empty-state">
-              <span>
-                <Search size={27} />
-              </span>
+            <div className="rrEmptyState">
+              <BookOpen size={28} />
               <h3>No matching resources found</h3>
-              <p>
-                Try another search term or choose a different category.
-              </p>
+              <p>Try another search or choose a different topic.</p>
               <button
                 type="button"
-                className="resource-button primary-resource-button"
+                className="rrResetButton"
                 onClick={() => {
-                  setSearchTerm("");
+                  setSearchQuery("");
                   setActiveCategory("All Resources");
                 }}
               >
-                View All Resources
+                Clear filters
               </button>
             </div>
           )}
-        </div>
-      </section>
 
-      <section className="resource-journey section-space">
-        <div className="resources-container">
-          <div className="resource-journey-panel">
-            <div className="journey-icon">
-              <CalendarDays size={26} />
-            </div>
-            <div className="journey-copy">
-              <span className="resource-eyebrow">YOUR NEXT STEP</span>
-              <h2>Have Questions About Your Recovery?</h2>
-              <p>
-                Reading can help you understand your options. A personalised
-                assessment can help you decide what to do next.
-              </p>
-            </div>
-            <Link className="resource-button journey-button" to="/appointment">
-              Book a Consultation <ArrowRight size={17} />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="resources-faq section-space">
-        <div className="resources-container resources-faq-layout">
-          <div className="resources-faq-intro">
-            <span className="resource-eyebrow">HELPFUL ANSWERS</span>
-            <h2>Frequently Asked Questions</h2>
-            <p>
-              A few important things to know before using our patient
-              education library.
-            </p>
-            <Link to="/contact" className="resource-text-link">
-              Still have questions? Contact us <ArrowRight size={16} />
-            </Link>
-          </div>
-
-          <div className="resources-faq-list">
-            {faqs.map((faq, index) => (
-              <div
-                className={`resources-faq-item ${
-                  openFaq === index ? "open" : ""
-                }`}
-                key={faq.question}
-              >
-                <button
-                  type="button"
-                  className="resources-faq-question"
-                  onClick={() =>
-                    setOpenFaq(openFaq === index ? -1 : index)
-                  }
-                  aria-expanded={openFaq === index}
-                >
-                  <span>{faq.question}</span>
-                  <ChevronDown size={19} />
-                </button>
-
-                <AnimatePresence initial={false}>
-                  {openFaq === index && (
-                    <motion.div
-                      className="resources-faq-answer"
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.22 }}
-                    >
-                      <p>{faq.answer}</p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="resource-disclaimer">
-        <div className="resources-container">
-          <ShieldCheck size={19} />
-          <p>
-            <strong>Health information notice:</strong> These resources are
-            for general educational purposes only. They are not a diagnosis
-            or an individual treatment plan. Consult a qualified healthcare
-            professional for advice specific to your situation. Seek urgent
-            care for severe or sudden warning symptoms.
+          <p className="rrLibraryNote">
+            These are introductory topic cards. Replace them with links to
+            reviewed and published articles when your resource library is ready.
           </p>
         </div>
       </section>
 
-      <CTASection
-        eyebrow="YOUR HEALTH JOURNEY"
-        title="Take the Next Step Towards Better Movement"
-        description="Our physiotherapy team can help you understand your needs and explore suitable care options."
-        buttonText="Book Your Appointment"
-        buttonLink="/appointment"
-        secondaryText="Contact Our Team"
-        secondaryLink="/contact"
-      />
-
-      <AnimatePresence>
-        {selectedResource && (
-          <motion.div
-            className="resource-modal-backdrop"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onMouseDown={(event) => {
-              if (event.target === event.currentTarget) {
-                setSelectedResource(null);
-              }
-            }}
-          >
-            <motion.div
-              className="resource-modal"
-              role="dialog"
-              aria-modal="true"
-              aria-labelledby="resource-modal-title"
-              initial={{ opacity: 0, y: 24, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 16, scale: 0.98 }}
-              transition={{ duration: 0.22 }}
-            >
-              <div className="resource-modal-header">
-                <span className="resource-modal-label">
-                  <BookOpen size={16} />
-                  PATIENT EDUCATION
-                </span>
-                <button
-                  type="button"
-                  className="resource-modal-close"
-                  onClick={() => setSelectedResource(null)}
-                  aria-label="Close article"
-                >
-                  <X size={21} />
-                </button>
-              </div>
-
-              <div className="resource-modal-body">
-                <span className="resource-category">
-                  {selectedResource.category}
-                </span>
-                <h2 id="resource-modal-title">
-                  {selectedResource.title}
-                </h2>
-                <p className="resource-modal-description">
-                  {selectedResource.description}
-                </p>
-
-                <div className="resource-modal-meta">
-                  <span>
-                    <Clock3 size={15} />
-                    {selectedResource.readTime}
-                  </span>
-                  <span>
-                    <Bookmark size={15} />
-                    {selectedResource.type}
-                  </span>
-                </div>
-
-                <div className="resource-article-content">
-                  {selectedResource.content.map((section, index) => (
-                    <section key={section.heading}>
-                      <h3>
-                        <span>{String(index + 1).padStart(2, "0")}</span>
-                        {section.heading}
-                      </h3>
-                      <p>{section.text}</p>
-                    </section>
-                  ))}
-                </div>
-
-                <div className="resource-article-notice">
-                  This guide provides general information. Your needs may
-                  differ, so seek professional advice when appropriate.
-                </div>
-
-                <Link
-                  className="resource-button primary-resource-button modal-book-button"
-                  to="/appointment"
-                  onClick={() => setSelectedResource(null)}
-                >
-                  Discuss Your Needs <ArrowRight size={17} />
-                </Link>
-              </div>
-            </motion.div>
+      <section className="rrSection rrTopics">
+        <div className="rrContainer">
+          <motion.div className="rrSectionHeading" {...reveal}>
+            <span className="rrEyebrow">EXPLORE BY INTEREST</span>
+            <h2>
+              Start with a topic
+              <span> that feels relevant</span>
+            </h2>
+            <p>
+              Choose an area to explore related educational resources.
+            </p>
           </motion.div>
-        )}
-      </AnimatePresence>
+
+          <div className="rrTopicsGrid">
+            {[
+              {
+                title: "Pain Management",
+                description: "Learn about common pain concerns and care options.",
+                icon: HeartPulse,
+                category: "Pain Management",
+              },
+              {
+                title: "Movement and Mobility",
+                description: "Explore movement habits and functional mobility.",
+                icon: Activity,
+                category: "Movement",
+              },
+              {
+                title: "Posture and Work",
+                description: "Review sitting habits and workplace movement.",
+                icon: PersonStanding,
+                category: "Posture",
+              },
+              {
+                title: "Recovery and Wellbeing",
+                description: "Understand rehabilitation goals and progress.",
+                icon: ShieldCheck,
+                category: "Recovery",
+              },
+            ].map((topic, index) => {
+              const Icon = topic.icon;
+
+              return (
+                <motion.button
+                  className="rrTopicCard"
+                  type="button"
+                  key={topic.title}
+                  {...reveal}
+                  transition={{
+                    duration: 0.45,
+                    delay: reduceMotion ? 0 : index * 0.06,
+                  }}
+                  onClick={() => {
+                    setActiveCategory(topic.category);
+                    setSearchQuery("");
+                    document
+                      .getElementById("resourceLibrary")
+                      ?.scrollIntoView({
+                        behavior: reduceMotion ? "auto" : "smooth",
+                      });
+                  }}
+                >
+                  <span className="rrTopicIcon">
+                    <Icon size={24} />
+                  </span>
+                  <span className="rrTopicTitle">{topic.title}</span>
+                  <span className="rrTopicDescription">
+                    {topic.description}
+                  </span>
+                  <span className="rrTopicArrow">
+                    Explore topic <MoveRight size={17} />
+                  </span>
+                </motion.button>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="rrSection rrTips">
+        <div className="rrContainer rrTipsGrid">
+          <motion.div className="rrTipsCopy" {...reveal}>
+            <span className="rrEyebrow">EVERYDAY WELLNESS</span>
+            <h2>
+              Small habits.
+              <span> More mindful movement.</span>
+            </h2>
+            <p>
+              Simple changes can help you pay more attention to how you move
+              throughout the day. Adapt any activity to your comfort and
+              abilities.
+            </p>
+            <Link className="rrTextLink" to="/online-physiotherapy">
+              Learn about online physiotherapy
+              <ArrowUpRight size={18} />
+            </Link>
+          </motion.div>
+
+          <div className="rrTipsList">
+            {quickTips.map((tip, index) => (
+              <motion.article
+                className="rrTipItem"
+                key={tip.number}
+                {...reveal}
+                transition={{
+                  duration: 0.45,
+                  delay: reduceMotion ? 0 : index * 0.07,
+                }}
+              >
+                <span className="rrTipNumber">{tip.number}</span>
+                <div>
+                  <h3>{tip.title}</h3>
+                  <p>{tip.description}</p>
+                </div>
+              </motion.article>
+            ))}
+            <div className="rrTipDisclaimer">
+              <Lightbulb size={19} />
+              <p>
+                Stop activities that cause concerning symptoms and seek
+                professional guidance when needed.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="rrSection rrFaq">
+        <div className="rrContainer rrFaqGrid">
+          <motion.div className="rrFaqIntro" {...reveal}>
+            <span className="rrEyebrow">HELPFUL ANSWERS</span>
+            <h2>
+              Questions about
+              <span> our resources?</span>
+            </h2>
+            <p>
+              Understand how to use educational information and when to seek
+              personalised guidance.
+            </p>
+            <Link className="rrTextLink" to="/contact">
+              Contact our team
+              <ArrowUpRight size={18} />
+            </Link>
+          </motion.div>
+
+          <motion.div className="rrFaqList" {...reveal}>
+            {faqs.map((faq, index) => {
+              const isOpen = openFaq === index;
+
+              return (
+                <div
+                  className={`rrFaqItem ${isOpen ? "isOpen" : ""}`}
+                  key={faq.question}
+                >
+                  <button
+                    type="button"
+                    className="rrFaqQuestion"
+                    aria-expanded={isOpen}
+                    onClick={() => setOpenFaq(isOpen ? -1 : index)}
+                  >
+                    <span>{faq.question}</span>
+                    <span className="rrFaqToggle">
+                      {isOpen ? <Minus size={18} /> : <Plus size={18} />}
+                    </span>
+                  </button>
+
+                  {isOpen && (
+                    <div className="rrFaqAnswer">
+                      <p>{faq.answer}</p>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </motion.div>
+        </div>
+      </section>
+
+      <CTASection
+        eyebrow="YOUR NEXT STEP"
+        title="Have questions about your movement?"
+        description="Speak with our team to discuss your concerns and explore the care options that may suit your needs."
+        buttonText="Book an Appointment"
+        buttonLink="/appointment"
+        secondaryText="Explore Our Services"
+        secondaryLink="/services"
+      />
     </main>
   );
 }
-
-export default Resources;

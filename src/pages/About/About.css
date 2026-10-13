@@ -1,833 +1,459 @@
 
-.about-page {
-  --about-navy: #16324f;
-  --about-blue: #4f83cc;
-  --about-light-blue: #eaf2fc;
-  --about-background: #f4f7fb;
-  --about-white: #ffffff;
-  --about-text: #24384c;
-  --about-muted: #65758a;
-  --about-border: #e1e8f0;
-
-  width: 100%;
+.rehabAbout {
   overflow: hidden;
-  color: var(--about-text);
-  background: var(--about-white);
+  background: #f7f1e8;
+  color: #353535;
 }
 
-.about-page * {
-  box-sizing: border-box;
-}
-
-.about-page img {
+.rehabAbout img {
   display: block;
-  max-width: 100%;
-}
-
-.about-container {
-  width: min(1180px, calc(100% - 40px));
-  margin: 0 auto;
-}
-
-.about-page h2,
-.about-page h3 {
-  margin-top: 0;
-  color: var(--about-navy);
-  font-family: "Manrope", sans-serif;
-}
-
-.about-page p,
-.about-page a,
-.about-page button,
-.about-page span {
-  font-family: "DM Sans", sans-serif;
-}
-
-.about-page p {
-  color: var(--about-muted);
-  font-size: 14px;
-  line-height: 1.8;
-}
-
-.about-page a {
-  text-decoration: none;
-}
-
-.about-page a:focus-visible,
-.about-page button:focus-visible {
-  outline: 3px solid var(--about-blue);
-  outline-offset: 4px;
-}
-
-.about-page section {
-  position: relative;
-}
-
-/* Introduction */
-
-.about-intro {
-  padding: 20px 0;
-  background: var(--about-white);
-}
-
-.about-intro-grid {
-  display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  align-items: center;
-  gap: 32px;
-}
-
-.about-intro-copy {
-  max-width: 630px;
-}
-
-.about-eyebrow {
-  display: inline-block;
-  margin-bottom: 10px;
-  color: var(--about-blue);
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 1.4px;
-  line-height: 1.5;
-}
-
-.about-intro-copy h2 {
-  margin-bottom: 12px;
-  font-size: clamp(27px, 3.2vw, 39px);
-  font-weight: 800;
-  line-height: 1.22;
-  letter-spacing: -0.9px;
-}
-
-.about-intro-copy h2 span {
-  color: var(--about-blue);
-}
-
-.about-intro-copy > p {
-  margin-bottom: 12px;
-}
-
-.about-intro-points {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 15px;
-}
-
-.about-intro-points span {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  color: var(--about-navy);
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.about-intro-points svg {
-  flex-shrink: 0;
-  color: var(--about-blue);
-}
-
-.about-intro-visual {
-  position: relative;
-  min-height: 350px;
-  overflow: hidden;
-  border-radius: 21px;
-  background: var(--about-light-blue);
-}
-
-.about-intro-visual > img {
-  position: absolute;
-  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.about-image-note {
+.rehabAbout .rhAboutIntro,
+.rehabAbout .rhAboutStory,
+.rehabAbout .rhAboutMission,
+.rehabAbout .rhAboutValues,
+.rehabAbout .rhAboutPrinciples {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.rehabAbout .rhAboutIntroGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 30px;
+}
+
+.rehabAbout .rhAboutIntroVisual {
+  position: relative;
+  min-width: 0;
+  padding: 0 0 20px 20px;
+}
+
+.rehabAbout .rhAboutImageMain {
+  height: 430px;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #e8ded3;
+}
+
+.rehabAbout .rhAboutImageMain img {
+  transition: transform 500ms ease;
+}
+
+.rehabAbout .rhAboutImageMain:hover img {
+  transform: scale(1.035);
+}
+
+.rehabAbout .rhAboutImageNote {
   position: absolute;
-  right: 13px;
-  bottom: 13px;
-  left: 13px;
+  right: 0;
+  bottom: 0;
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 13px;
-  border: 1px solid rgba(255, 255, 255, 0.7);
+  max-width: 270px;
+  padding: 16px;
+  border: 1px solid #e8ded3;
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.96);
-  backdrop-filter: blur(10px);
+  background: #fff;
+  box-shadow: 0 12px 30px rgb(53 53 53 / 9%);
 }
 
-.about-note-icon {
+.rehabAbout .rhAboutNoteIcon {
   display: grid;
-  width: 43px;
-  height: 43px;
+  width: 42px;
+  height: 42px;
   flex-shrink: 0;
   place-items: center;
   border-radius: 12px;
-  color: var(--about-blue);
-  background: var(--about-light-blue);
+  background: #f7f1e8;
+  color: #b85c38;
+  font-size: 23px;
 }
 
-.about-image-note strong {
+.rehabAbout .rhAboutImageNote strong {
   display: block;
-  margin-bottom: 4px;
-  color: var(--about-navy);
   font-size: 14px;
+  line-height: 1.5;
 }
 
-.about-image-note p {
+.rehabAbout .rhAboutImageNote p {
+  margin: 3px 0 0;
+  color: #746b64;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.rehabAbout .rhAboutIntroContent {
+  max-width: 540px;
+}
+
+.rehabAbout .rhAboutIntroContent h2,
+.rehabAbout .rhAboutStoryHeading h2,
+.rehabAbout .rhAboutMissionCard h2,
+.rehabAbout .rhAboutSectionHeading h2,
+.rehabAbout .rhAboutPrinciplesIntro h2 {
+  margin: 12px 0 16px;
+  font-family: "Lora", Georgia, serif;
+  font-size: clamp(28px, 3.2vw, 44px);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.8px;
+}
+
+.rehabAbout .rhAboutIntroContent h2 em,
+.rehabAbout .rhAboutStoryHeading h2 em,
+.rehabAbout .rhAboutMissionCard h2 em,
+.rehabAbout .rhAboutSectionHeading h2 em,
+.rehabAbout .rhAboutPrinciplesIntro h2 em {
+  color: #b85c38;
+  font-weight: 500;
+}
+
+.rehabAbout .rhAboutIntroContent > p,
+.rehabAbout .rhAboutStoryContent > p,
+.rehabAbout .rhAboutMissionCard > p,
+.rehabAbout .rhAboutSectionHeading > p,
+.rehabAbout .rhAboutPrinciplesIntro > p {
+  color: #746b64;
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+.rehabAbout .rhAboutIntroContent > p {
+  margin: 0 0 12px;
+}
+
+.rehabAbout .rhAboutIntroContent .rhButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+  text-decoration: none;
+}
+
+.rehabAbout .rhAboutStory {
+  background: #fff;
+}
+
+.rehabAbout .rhAboutStoryGrid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.rehabAbout .rhAboutStoryHeading {
+  max-width: 430px;
+}
+
+.rehabAbout .rhAboutStoryContent > p {
+  margin: 0 0 12px;
+}
+
+.rehabAbout .rhAboutStoryQuote {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  padding: 16px;
+  border-left: 3px solid #b85c38;
+  border-radius: 0 12px 12px 0;
+  background: #f7f1e8;
+}
+
+.rehabAbout .rhAboutStoryQuote > span {
+  color: #b85c38;
+  font-family: Georgia, serif;
+  font-size: 38px;
+  line-height: 1;
+}
+
+.rehabAbout .rhAboutStoryQuote p {
   margin: 0;
-  font-size: 12px;
+  color: #353535;
+  font-family: "Lora", Georgia, serif;
+  font-size: 16px;
+  line-height: 1.65;
 }
 
-/* Mission and Vision */
-
-.about-purpose {
-  padding: 20px 0;
-  background: var(--about-background);
-}
-
-.about-purpose-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
-  margin-top: 20px;
-}
-
-.about-purpose-card {
-  padding: 20px;
-  border: 1px solid var(--about-border);
-  border-radius: 18px;
-  background: var(--about-white);
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
-}
-
-.about-purpose-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 28px rgba(22, 50, 79, 0.08);
-}
-
-.about-purpose-card-featured {
-  border-color: rgba(79, 131, 204, 0.35);
-  background:
-    radial-gradient(
-      circle at 100% 0,
-      rgba(79, 131, 204, 0.13),
-      transparent 55%
-    ),
-    var(--about-white);
-}
-
-.about-purpose-icon {
-  display: grid;
-  width: 49px;
-  height: 49px;
-  margin-bottom: 13px;
-  place-items: center;
-  border-radius: 14px;
-  color: var(--about-blue);
-  background: var(--about-light-blue);
-}
-
-.about-purpose-label {
-  display: block;
-  margin-bottom: 8px;
-  color: var(--about-blue);
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 1.2px;
-}
-
-.about-purpose-card h3 {
-  margin-bottom: 9px;
-  font-size: 21px;
-  font-weight: 800;
-  line-height: 1.4;
-}
-
-.about-purpose-card p {
-  margin-bottom: 0;
-}
-
-/* Values */
-
-.about-values {
-  padding: 20px 0;
-  background: var(--about-white);
-}
-
-.about-values-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 16px;
-  margin-top: 20px;
-}
-
-.about-value-card {
-  padding: 18px;
-  border: 1px solid var(--about-border);
+.rehabAbout .rhAboutMissionCard {
+  position: relative;
+  overflow: hidden;
+  padding: 24px;
+  border: 1px solid #e8ded3;
   border-radius: 16px;
-  background: var(--about-white);
-  transition:
-    border-color 0.25s ease,
-    box-shadow 0.25s ease;
+  background: #efe2d4;
 }
 
-.about-value-card:hover {
-  border-color: rgba(79, 131, 204, 0.5);
-  box-shadow: 0 10px 25px rgba(22, 50, 79, 0.07);
-}
-
-.about-value-top {
+.rehabAbout .rhAboutMissionTop {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
-  margin-bottom: 17px;
-}
-
-.about-value-icon {
-  display: grid;
-  width: 45px;
-  height: 45px;
-  place-items: center;
-  border-radius: 13px;
-  color: var(--about-blue);
-  background: var(--about-light-blue);
-}
-
-.about-value-top > span {
-  color: #8b9aaf;
-  font-size: 12px;
-  font-weight: 800;
-}
-
-.about-value-card h3 {
-  margin-bottom: 8px;
-  font-size: 16px;
-  font-weight: 800;
-  line-height: 1.45;
-}
-
-.about-value-card p {
-  margin-bottom: 0;
-  font-size: 13px;
-}
-
-/* Care Philosophy */
-
-.about-philosophy {
-  padding: 20px 0;
-  background: var(--about-background);
-}
-
-.about-philosophy-grid {
-  display: grid;
-  grid-template-columns: 0.92fr 1.08fr;
-  align-items: center;
-  gap: 35px;
-}
-
-.about-philosophy-visual {
-  position: relative;
-  min-height: 430px;
-  overflow: hidden;
-  border-radius: 21px;
-  background: var(--about-light-blue);
-}
-
-.about-philosophy-visual > img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.about-visual-badge {
-  position: absolute;
-  right: 13px;
-  bottom: 13px;
-  left: 13px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 13px;
-  border-radius: 13px;
-  color: var(--about-navy);
-  background: rgba(255, 255, 255, 0.96);
-}
-
-.about-visual-badge svg {
-  flex-shrink: 0;
-  color: var(--about-blue);
-}
-
-.about-visual-badge span {
-  font-size: 13px;
-  font-weight: 800;
-}
-
-.about-philosophy-copy {
-  min-width: 0;
-}
-
-.about-philosophy-list {
-  display: grid;
-  gap: 16px;
-  margin: 18px 0;
-}
-
-.about-philosophy-item {
-  display: flex;
-  align-items: flex-start;
   gap: 12px;
 }
 
-.about-list-number {
-  display: grid;
-  width: 37px;
-  height: 37px;
-  flex-shrink: 0;
-  place-items: center;
-  border-radius: 11px;
-  color: var(--about-blue);
-  background: var(--about-light-blue);
-  font-size: 12px;
-  font-weight: 800;
-}
-
-.about-philosophy-item h3 {
-  margin-bottom: 5px;
-  font-size: 15px;
-  font-weight: 800;
-}
-
-.about-philosophy-item p {
-  margin-bottom: 0;
-  font-size: 13px;
-}
-
-.about-primary-link {
-  display: inline-flex;
-  min-height: 44px;
-  align-items: center;
-  justify-content: center;
-  gap: 9px;
-  padding: 11px 16px;
-  border: 1px solid var(--about-navy);
-  border-radius: 10px;
-  color: var(--about-white) !important;
-  background: var(--about-navy);
-  font-size: 13px;
-  font-weight: 800;
-  transition:
-    background 0.25s ease,
-    border-color 0.25s ease;
-}
-
-.about-primary-link:hover {
-  border-color: var(--about-blue);
-  background: var(--about-blue);
-}
-
-.about-primary-link svg {
-  transition: transform 0.25s ease;
-}
-
-.about-primary-link:hover svg {
-  transform: translateX(4px);
-}
-
-/* Journey */
-
-.about-journey {
-  padding: 20px 0;
-  background: var(--about-white);
-}
-
-.about-journey-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 15px;
-  margin-top: 20px;
-}
-
-.about-journey-card {
-  padding: 18px;
-  border: 1px solid var(--about-border);
-  border-radius: 16px;
-  background: var(--about-white);
-}
-
-.about-journey-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  margin-bottom: 17px;
-}
-
-.about-journey-top > span {
-  color: #8b9aaf;
-  font-size: 13px;
-  font-weight: 800;
-}
-
-.about-journey-icon {
+.rehabAbout .rhAboutMissionMark {
   display: grid;
   width: 44px;
   height: 44px;
   place-items: center;
-  border-radius: 12px;
-  color: var(--about-blue);
-  background: var(--about-light-blue);
+  border-radius: 50%;
+  background: #fff;
+  color: #b85c38;
+  font-size: 23px;
 }
 
-.about-journey-card h3 {
-  margin-bottom: 8px;
-  font-size: 16px;
-  font-weight: 800;
+.rehabAbout .rhAboutMissionCard h2 {
+  max-width: 700px;
 }
 
-.about-journey-card p {
-  margin-bottom: 0;
-  font-size: 13px;
-}
-
-.about-journey-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-  margin-top: 18px;
-}
-
-.about-journey-footer p {
+.rehabAbout .rhAboutMissionCard > p {
+  max-width: 760px;
   margin: 0;
-  font-size: 12px;
 }
 
-/* Services Prompt */
-
-.about-services-prompt {
-  padding: 20px 0;
-  background: var(--about-background);
+.rehabAbout .rhAboutSectionHeading {
+  max-width: 620px;
+  margin: 0 auto 24px;
+  text-align: center;
 }
 
-.about-services-prompt-inner {
+.rehabAbout .rhAboutSectionHeading h2 {
+  margin-bottom: 10px;
+}
+
+.rehabAbout .rhAboutSectionHeading > p {
+  margin: 0;
+}
+
+.rehabAbout .rhAboutValuesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.rehabAbout .rhAboutValueCard {
   display: flex;
-  align-items: center;
-  gap: 17px;
+  min-height: 220px;
+  flex-direction: column;
+  align-items: flex-start;
   padding: 20px;
-  border: 1px solid var(--about-border);
-  border-radius: 18px;
-  background: var(--about-white);
+  border: 1px solid #e8ded3;
+  border-radius: 16px;
+  background: #fff;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
 }
 
-.about-services-prompt-icon {
-  display: grid;
-  width: 55px;
-  height: 55px;
-  flex-shrink: 0;
-  place-items: center;
-  border-radius: 15px;
-  color: var(--about-blue);
-  background: var(--about-light-blue);
+.rehabAbout .rhAboutValueCard:hover {
+  transform: translateY(-4px);
+  border-color: #dfa58b;
+  box-shadow: 0 12px 26px rgb(53 53 53 / 6%);
 }
 
-.about-services-prompt-copy {
-  flex: 1;
-  min-width: 0;
-}
-
-.about-services-prompt-copy .about-eyebrow {
-  margin-bottom: 5px;
-}
-
-.about-services-prompt-copy h2 {
-  margin-bottom: 5px;
-  font-size: 21px;
-  font-weight: 800;
-  line-height: 1.4;
-}
-
-.about-services-prompt-copy p {
-  margin-bottom: 0;
-  font-size: 13px;
-}
-
-/* FAQ */
-
-.about-faq {
-  padding: 20px 0;
-  background: var(--about-white);
-}
-
-.about-faq-grid {
-  display: grid;
-  grid-template-columns: 0.8fr 1.2fr;
-  align-items: start;
-  gap: 35px;
-}
-
-.about-faq-intro > div:first-child {
-  margin-bottom: 16px;
-}
-
-.about-faq-list {
-  display: grid;
-  gap: 10px;
-}
-
-.about-faq-item {
-  overflow: hidden;
-  border: 1px solid var(--about-border);
-  border-radius: 13px;
-  background: var(--about-white);
-}
-
-.about-faq-item.is-open {
-  border-color: rgba(79, 131, 204, 0.55);
-}
-
-.about-faq-question {
+.rehabAbout .rhAboutValueTop {
   display: flex;
   width: 100%;
-  min-height: 55px;
   align-items: center;
   justify-content: space-between;
-  gap: 14px;
-  padding: 13px 15px;
-  border: 0;
-  color: var(--about-navy);
-  background: transparent;
-  cursor: pointer;
-  text-align: left;
+  margin-bottom: 18px;
 }
 
-.about-faq-question span {
-  font-size: 14px;
-  font-weight: 800;
-  line-height: 1.6;
-}
-
-.about-faq-chevron {
-  flex-shrink: 0;
-  color: var(--about-blue);
-  transition: transform 0.25s ease;
-}
-
-.about-faq-item.is-open .about-faq-chevron {
-  transform: rotate(180deg);
-}
-
-.about-faq-answer {
-  padding: 0 15px 14px;
-  animation: about-faq-reveal 0.25s ease;
-}
-
-.about-faq-answer p {
-  margin-bottom: 0;
-  font-size: 13px;
-}
-
-@keyframes about-faq-reveal {
-  from {
-    opacity: 0;
-    transform: translateY(-5px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Disclaimer */
-
-.about-disclaimer {
-  padding: 15px 0;
-  border-top: 1px solid var(--about-border);
-  background: var(--about-background);
-}
-
-.about-disclaimer-inner {
-  display: flex;
-  align-items: flex-start;
-  gap: 11px;
-}
-
-.about-disclaimer-inner svg {
-  flex-shrink: 0;
-  margin-top: 3px;
-  color: var(--about-blue);
-}
-
-.about-disclaimer-inner p {
-  margin-bottom: 0;
+.rehabAbout .rhAboutValueNumber {
+  color: #746b64;
   font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
 }
 
-/* Responsive */
+.rehabAbout .rhAboutValueIcon {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 12px;
+  background: #f7f1e8;
+  color: #b85c38;
+  font-size: 23px;
+}
 
-@media (max-width: 1050px) {
-  .about-values-grid,
-  .about-journey-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+.rehabAbout .rhAboutValueCard h3,
+.rehabAbout .rhAboutPrinciple h3 {
+  margin: 0 0 8px;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.rehabAbout .rhAboutValueCard p,
+.rehabAbout .rhAboutPrinciple p {
+  margin: 0;
+  color: #746b64;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.rehabAbout .rhAboutValueLine {
+  width: 38px;
+  height: 3px;
+  margin-top: auto;
+  padding-top: 0;
+  transform: translateY(-1px);
+  border-radius: 10px;
+  background: #b85c38;
+}
+
+.rehabAbout .rhAboutPrinciples {
+  background: #fff;
+}
+
+.rehabAbout .rhAboutPrinciplesGrid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.rehabAbout .rhAboutPrinciplesIntro {
+  max-width: 430px;
+}
+
+.rehabAbout .rhAboutPrinciplesIntro > p {
+  margin: 0;
+}
+
+.rehabAbout .rhAboutPrinciplesList {
+  display: grid;
+  gap: 0;
+}
+
+.rehabAbout .rhAboutPrinciple {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid #e8ded3;
+}
+
+.rehabAbout .rhAboutPrinciple:first-child {
+  padding-top: 0;
+}
+
+.rehabAbout .rhAboutPrinciple:last-child {
+  border-bottom: 0;
+}
+
+.rehabAbout .rhAboutPrincipleNumber {
+  color: #b85c38;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.rehabAbout .rhAboutPrinciple h3 {
+  margin-top: 0;
+}
+
+@media (min-width: 1200px) {
+  .rehabAbout .rhAboutImageMain {
+    height: 460px;
   }
+}
 
-  .about-philosophy-grid {
+@media (max-width: 900px) {
+  .rehabAbout .rhAboutIntroGrid,
+  .rehabAbout .rhAboutStoryGrid,
+  .rehabAbout .rhAboutPrinciplesGrid {
     gap: 24px;
   }
 
-  .about-philosophy-visual {
-    min-height: 390px;
+  .rehabAbout .rhAboutImageMain {
+    height: 360px;
   }
 
-  .about-faq-grid {
-    gap: 25px;
-  }
-}
-
-@media (max-width: 760px) {
-  .about-container {
-    width: min(100% - 30px, 600px);
+  .rehabAbout .rhAboutIntroContent h2,
+  .rehabAbout .rhAboutStoryHeading h2,
+  .rehabAbout .rhAboutMissionCard h2,
+  .rehabAbout .rhAboutSectionHeading h2,
+  .rehabAbout .rhAboutPrinciplesIntro h2 {
+    font-size: clamp(27px, 4vw, 36px);
   }
 
-  .about-intro-grid,
-  .about-philosophy-grid,
-  .about-faq-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .about-intro,
-  .about-purpose,
-  .about-values,
-  .about-philosophy,
-  .about-journey,
-  .about-services-prompt,
-  .about-faq {
-    padding: 18px 0;
-  }
-
-  .about-intro-visual {
-    min-height: 330px;
-  }
-
-  .about-philosophy-visual {
-    min-height: 350px;
-  }
-
-  .about-purpose-grid {
-    gap: 13px;
-  }
-
-  .about-values-grid,
-  .about-journey-grid {
+  .rehabAbout .rhAboutValuesGrid {
     gap: 12px;
   }
 
-  .about-journey-footer {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .about-services-prompt-inner {
-    flex-wrap: wrap;
+  .rehabAbout .rhAboutValueCard {
     padding: 16px;
-  }
-
-  .about-services-prompt-copy {
-    flex-basis: calc(100% - 75px);
-  }
-
-  .about-services-prompt-inner > .about-primary-link {
-    width: 100%;
-  }
-
-  .about-faq-grid {
-    gap: 20px;
   }
 }
 
-@media (max-width: 520px) {
-  .about-container {
-    width: calc(100% - 28px);
-  }
-
-  .about-intro-copy h2 {
-    font-size: 27px;
-  }
-
-  .about-purpose-grid,
-  .about-values-grid,
-  .about-journey-grid {
+@media (max-width: 640px) {
+  .rehabAbout .rhAboutIntroGrid,
+  .rehabAbout .rhAboutStoryGrid,
+  .rehabAbout .rhAboutPrinciplesGrid {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
 
-  .about-purpose-card,
-  .about-value-card,
-  .about-journey-card {
-    padding: 16px;
+  .rehabAbout .rhAboutIntroVisual {
+    padding-left: 0;
+    padding-bottom: 18px;
   }
 
-  .about-purpose-card h3 {
-    font-size: 19px;
+  .rehabAbout .rhAboutImageMain {
+    height: 300px;
   }
 
-  .about-intro-visual {
-    min-height: 290px;
-  }
-
-  .about-philosophy-visual {
-    min-height: 300px;
-  }
-
-  .about-intro-points {
-    gap: 10px;
-  }
-
-  .about-journey-footer,
-  .about-faq-intro {
-    align-items: stretch;
-  }
-
-  .about-journey-footer .about-primary-link,
-  .about-faq-intro .about-primary-link,
-  .about-philosophy-copy > .about-primary-link {
-    width: 100%;
-  }
-
-  .about-faq-question {
+  .rehabAbout .rhAboutImageNote {
+    right: 8px;
+    max-width: 245px;
     padding: 12px;
   }
 
-  .about-faq-question span {
-    font-size: 13px;
+  .rehabAbout .rhAboutIntroContent h2,
+  .rehabAbout .rhAboutStoryHeading h2,
+  .rehabAbout .rhAboutMissionCard h2,
+  .rehabAbout .rhAboutSectionHeading h2,
+  .rehabAbout .rhAboutPrinciplesIntro h2 {
+    font-size: 29px;
+    letter-spacing: -0.5px;
   }
 
-  .about-faq-answer {
-    padding: 0 12px 13px;
+  .rehabAbout .rhAboutMissionCard {
+    padding: 20px;
   }
 
-  .about-services-prompt-copy h2 {
-    font-size: 18px;
+  .rehabAbout .rhAboutValuesGrid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .rehabAbout .rhAboutValueCard {
+    min-height: 0;
+    padding: 18px;
+  }
+
+  .rehabAbout .rhAboutValueLine {
+    margin-top: 16px;
+  }
+
+  .rehabAbout .rhAboutPrinciple {
+    grid-template-columns: 32px minmax(0, 1fr);
+    gap: 10px;
   }
 }
 
-/* Reduced Motion */
-
 @media (prefers-reduced-motion: reduce) {
-  .about-page *,
-  .about-page *::before,
-  .about-page *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+  .rehabAbout .rhAboutImageMain img,
+  .rehabAbout .rhAboutValueCard {
+    transition: none;
   }
 }

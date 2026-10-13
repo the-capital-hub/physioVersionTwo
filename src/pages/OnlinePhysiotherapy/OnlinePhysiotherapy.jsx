@@ -1,380 +1,244 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import {
   Video,
-  Clock3,
-  ShieldCheck,
-  HeartPulse,
-  CalendarCheck,
   ClipboardCheck,
-  MonitorSmartphone,
-  UserRoundCheck,
-  CheckCircle2,
-  ArrowRight,
-  CircleHelp,
-  Activity,
-  MessageCircle,
+  CalendarDays,
   Laptop,
-  Stethoscope,
-  PlayCircle,
-  ChevronDown,
+  CheckCircle2,
+  ArrowUpRight,
+  HeartPulse,
+  Activity,
+  ShieldCheck,
+  Clock3,
+  Wifi,
+  Smartphone,
+  CircleHelp,
+  Plus,
+  Minus,
 } from "lucide-react";
 
-import HeroSection from "../../components/HeroSection/HeroSection";
-import SectionHeading from "../../components/SectionHeading/SectionHeading";
-import CTASection from "../../components/CTASection/CTASection";
 
 import "./OnlinePhysiotherapy.css";
-
-const benefits = [
-  {
-    icon: MonitorSmartphone,
-    title: "Care from home",
-    description:
-      "Connect with a physiotherapist from a comfortable and familiar environment.",
-  },
-  {
-    icon: Clock3,
-    title: "Flexible scheduling",
-    description:
-      "Choose an appointment time that works with your daily routine.",
-  },
-  {
-    icon: UserRoundCheck,
-    title: "Personal guidance",
-    description:
-      "Receive exercises and movement guidance based on your individual needs.",
-  },
-  {
-    icon: ClipboardCheck,
-    title: "Progress reviews",
-    description:
-      "Review your movement, discuss concerns and adjust your plan with your therapist.",
-  },
-  {
-    icon: MessageCircle,
-    title: "Clear communication",
-    description:
-      "Ask questions and understand how to practise your recommended exercises safely.",
-  },
-  {
-    icon: HeartPulse,
-    title: "Support for daily life",
-    description:
-      "Learn practical ways to manage movement challenges during everyday activities.",
-  },
-];
-
-const conditions = [
-  {
-    title: "Back and neck discomfort",
-    description:
-      "Movement guidance, posture advice and exercises when appropriate.",
-    icon: Activity,
-  },
-  {
-    title: "Joint stiffness",
-    description:
-      "Guidance for improving comfortable movement and daily function.",
-    icon: HeartPulse,
-  },
-  {
-    title: "Sports related concerns",
-    description:
-      "Initial movement guidance and recovery planning for suitable injuries.",
-    icon: Activity,
-  },
-  {
-    title: "Posture and mobility",
-    description:
-      "Practical advice for movement habits, flexibility and mobility.",
-    icon: UserRoundCheck,
-  },
-  {
-    title: "Recovery after treatment",
-    description:
-      "Follow up support when remote care is suitable for your recovery plan.",
-    icon: ShieldCheck,
-  },
-  {
-    title: "Exercise guidance",
-    description:
-      "Help understanding and performing prescribed exercises correctly.",
-    icon: ClipboardCheck,
-  },
-];
+import HeroSection from "../../components/HeroSection/HeroSection";
+import CTASection from "../../components/CTASection/CTASection";
 
 const steps = [
   {
     number: "01",
+    icon: CalendarDays,
     title: "Book your session",
     description:
-      "Choose a convenient appointment time and share a brief description of your concern.",
-    icon: CalendarCheck,
+      "Choose a convenient appointment time and tell us what you need help with.",
   },
   {
     number: "02",
-    title: "Meet your therapist",
-    description:
-      "Join your video consultation and discuss your symptoms, history and goals.",
     icon: Video,
+    title: "Meet your physiotherapist",
+    description:
+      "Connect through a video consultation and discuss your symptoms, goals and daily routine.",
   },
   {
     number: "03",
-    title: "Get your care plan",
-    description:
-      "Receive suitable exercise guidance and practical recommendations for your needs.",
     icon: ClipboardCheck,
+    title: "Get your recovery plan",
+    description:
+      "Receive personalised exercises, movement guidance and practical advice for home.",
   },
   {
     number: "04",
-    title: "Review your progress",
+    icon: Activity,
+    title: "Track your progress",
     description:
-      "Attend follow up sessions when needed and discuss any changes or difficulties.",
-    icon: CheckCircle2,
+      "Attend follow up sessions so your physiotherapist can review progress and adjust your plan.",
   },
+];
+
+const benefits = [
+  {
+    icon: Laptop,
+    title: "Care from home",
+    description:
+      "Connect with a physiotherapist without travelling to a clinic.",
+  },
+  {
+    icon: CalendarDays,
+    title: "Flexible scheduling",
+    description:
+      "Choose a session that fits more comfortably into your daily routine.",
+  },
+  {
+    icon: HeartPulse,
+    title: "Personalised guidance",
+    description:
+      "Get exercise guidance shaped around your goals, abilities and needs.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Professional support",
+    description:
+      "Receive guidance from a physiotherapist who can assess your needs and recommend suitable next steps.",
+  },
+];
+
+const conditions = [
+  "Back pain",
+  "Neck pain",
+  "Shoulder discomfort",
+  "Knee pain",
+  "Posture concerns",
+  "Sports related injuries",
+  "Muscle stiffness",
+  "Balance and mobility",
+];
+
+const requirements = [
+  "A phone, tablet or computer with a camera",
+  "A stable internet connection",
+  "A quiet space where you can move comfortably",
+  "Comfortable clothing for movement assessment",
 ];
 
 const faqs = [
   {
-    question: "What do I need for an online physiotherapy session?",
+    question: "What happens during an online physiotherapy session?",
     answer:
-      "You generally need a phone, tablet or computer with a camera, a stable internet connection and a quiet space where you can move comfortably. Your therapist may suggest a chair or other simple equipment.",
+      "Your physiotherapist discusses your symptoms, medical history and goals. Depending on your needs, they may observe your movements, explain suitable exercises and suggest the next steps.",
   },
   {
-    question: "Can online physiotherapy help with my condition?",
+    question: "Can online physiotherapy help with back pain?",
     answer:
-      "It can help with many movement related concerns, but suitability depends on your symptoms, medical history and individual assessment. Your physiotherapist can discuss whether remote care is appropriate or an in person assessment is needed.",
+      "Online physiotherapy may help with many types of back pain through movement assessment, exercise guidance and education. Your physiotherapist will decide whether remote care is appropriate for your situation.",
   },
   {
-    question: "How long does a consultation take?",
+    question: "Do I need any special equipment?",
     answer:
-      "The duration depends on the type of appointment and your individual needs. Please confirm the expected duration when booking your session.",
+      "Usually, a phone or computer with a camera, reliable internet and enough room to move are a good starting point. Your physiotherapist can tell you if anything else is needed.",
   },
   {
-    question: "Do I need to exercise during the video call?",
+    question: "How long does a session take?",
     answer:
-      "Your therapist may ask you to demonstrate simple movements if it is safe and relevant. Wear comfortable clothing and ensure you have enough space to move. Do not perform movements that cause severe pain or feel unsafe.",
+      "Session length depends on your needs and the appointment you book. Your physiotherapist can explain the expected duration before your consultation.",
   },
   {
-    question: "Is online physiotherapy a replacement for an in person visit?",
+    question: "Is online physiotherapy suitable for everyone?",
     answer:
-      "Not always. Some concerns require a physical examination, hands on assessment or in person treatment. Your therapist can advise you about the most appropriate option.",
+      "Not always. Some conditions need an in person examination or urgent medical care. Your physiotherapist can help determine whether an online consultation is suitable.",
   },
 ];
 
-function OnlinePhysiotherapy() {
+export default function OnlinePhysiotherapy() {
+  const reduceMotion = useReducedMotion();
   const [openFaq, setOpenFaq] = useState(0);
 
+  const reveal = reduceMotion
+    ? {}
+    : {
+        initial: { opacity: 0, y: 22 },
+        whileInView: { opacity: 1, y: 0 },
+        viewport: { once: true, amount: 0.15 },
+        transition: { duration: 0.55 },
+      };
+
   return (
-    <main className="online-physio-page">
+    <main className="onlinePhysioPage">
       <HeroSection
         eyebrow="PHYSIOTHERAPY THAT FITS YOUR LIFE"
-        title="Expert Physiotherapy, Wherever You"
-        highlight="Feel at Home"
-        description="Get personalised movement guidance, exercise support and follow up care through online consultations with a physiotherapist."
-        primaryText="Book Online Consultation"
-        primaryLink="/appointment"
-        secondaryText="Explore Our Services"
-        secondaryLink="/services"
-        image="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=85"
-        imageAlt="Healthcare professional discussing care with a patient"
-        imageLabel="Personalised care, made accessible"
-        imageDescription="Connect with a physiotherapist from your own space."
-        showStats={false}
-        showImage={true}
+        title="Expert care,"
+        highlight="where you feel at home."
+        description="Move with more confidence through personalised online physiotherapy. Connect with a physiotherapist, understand your movement and work towards your recovery from home."
+        buttonText="Book an Appointment"
+        buttonLink="/appointment"
+        secondaryText="How It Works"
+        secondaryLink="#onlineHowItWorks"
+        image="https://images.pexels.com/photos/3768916/pexels-photo-3768916.jpeg"
+        imageAlt="Physiotherapist guiding a patient through a movement exercise"
+        imageLabel="Your recovery, your space"
+        imageDescription="Personalised guidance for your everyday movement"
+        features={[
+          "Personalised exercise guidance",
+          "Convenient video consultations",
+          "Support for your recovery goals",
+        ]}
       />
 
-      <section className="op-trust-strip">
-        <div className="op-container op-trust-grid">
-          <div className="op-trust-item">
-            <Video />
-            <span>Convenient video sessions</span>
-          </div>
-          <div className="op-trust-item">
-            <UserRoundCheck />
-            <span>Individual care guidance</span>
-          </div>
-          <div className="op-trust-item">
-            <ShieldCheck />
-            <span>Care based on your needs</span>
-          </div>
-        </div>
-      </section>
+      <section className="opSection opIntro">
+        <div className="opContainer opIntroGrid">
+          <motion.div className="opIntroContent" {...reveal}>
+            <span className="opEyebrow">CARE THAT COMES TO YOU</span>
+            <h2>
+              Better movement starts with
+              <span> the right guidance.</span>
+            </h2>
+            <p>
+              Getting help with movement should feel approachable. Online
+              physiotherapy lets you speak with a professional, learn exercises
+              suited to your needs and build healthy movement habits in a
+              familiar environment.
+            </p>
+            <p>
+              Your care begins with understanding your concerns, your routine
+              and what you want to achieve.
+            </p>
+            <Link className="opTextLink" to="/appointment">
+              Start your recovery journey
+              <ArrowUpRight size={18} />
+            </Link>
+          </motion.div>
 
-      <section className="op-section op-benefits">
-        <div className="op-container">
-          <SectionHeading
-            eyebrow="WHY CHOOSE ONLINE CARE"
-            title="Physiotherapy That Works Around"
-            highlight="Your Day"
-            description="Get professional guidance without making travel the first step. Online care helps you focus on movement, education and progress from home."
-            align="center"
-            size="large"
-          />
-
-          <div className="op-benefit-grid">
-            {benefits.map((benefit, index) => {
-              const Icon = benefit.icon;
-
-              return (
-                <motion.article
-                  className="op-benefit-card"
-                  key={benefit.title}
-                  initial={{ opacity: 0, y: 18 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.4, delay: index * 0.06 }}
-                >
-                  <div className="op-icon-box">
-                    <Icon size={23} strokeWidth={1.8} />
-                  </div>
-                  <h3>{benefit.title}</h3>
-                  <p>{benefit.description}</p>
-                </motion.article>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      <section className="op-section op-how">
-        <div className="op-container op-how-grid">
-          <motion.div
-            className="op-how-visual"
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
+          <motion.div className="opIntroVisual" {...reveal}>
             <img
-              src="https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1100&q=85"
-              alt="Healthcare professional preparing for a consultation"
+              src="https://images.pexels.com/photos/4498606/pexels-photo-4498606.jpeg"
+              alt="Physiotherapist helping a patient practise a guided exercise"
               loading="lazy"
             />
-
-            <div className="op-visual-note">
-              <div className="op-visual-note-icon">
-                <Video size={20} />
-              </div>
+            <div className="opImageNote">
+              <span className="opNoteIcon">
+                <HeartPulse size={22} />
+              </span>
               <div>
-                <strong>Care that meets you where you are</strong>
-                <span>Personal guidance through video consultation</span>
+                <strong>Care built around you</strong>
+                <p>Guidance for your everyday goals</p>
               </div>
             </div>
           </motion.div>
-
-          <div className="op-how-content">
-            <SectionHeading
-              eyebrow="SIMPLE AND CONVENIENT"
-              title="How Online Physiotherapy"
-              highlight="Works"
-              description="Your journey starts with a conversation. Together, you and your therapist can explore your concerns and discuss the next steps."
-              align="left"
-              size="large"
-            />
-
-            <div className="op-check-list">
-              <div>
-                <CheckCircle2 />
-                <span>Discuss your symptoms and movement goals</span>
-              </div>
-              <div>
-                <CheckCircle2 />
-                <span>Review suitable movements through video</span>
-              </div>
-              <div>
-                <CheckCircle2 />
-                <span>Understand your exercise recommendations</span>
-              </div>
-              <div>
-                <CheckCircle2 />
-                <span>Plan follow up care based on your needs</span>
-              </div>
-            </div>
-
-            <Link to="/appointment" className="op-primary-button">
-              Schedule a Consultation <ArrowRight size={18} />
-            </Link>
-          </div>
         </div>
       </section>
 
-      <section className="op-section op-conditions">
-        <div className="op-container">
-          <SectionHeading
-            eyebrow="CARE FOR YOUR MOVEMENT"
-            title="When Could Online Physiotherapy"
-            highlight="Help?"
-            description="Remote consultations may be useful for several movement concerns. Your therapist will first consider whether online care is suitable for you."
-            align="center"
-            size="large"
-          />
+      <section className="opSection opSteps" id="onlineHowItWorks">
+        <div className="opContainer">
+          <motion.div className="opSectionHeading" {...reveal}>
+            <span className="opEyebrow">SIMPLE FROM THE START</span>
+            <h2>
+              How online physiotherapy
+              <span> works</span>
+            </h2>
+            <p>
+              A clear process that helps you understand your needs and take
+              practical steps towards better movement.
+            </p>
+          </motion.div>
 
-          <div className="op-condition-grid">
-            {conditions.map((condition, index) => {
-              const Icon = condition.icon;
-
-              return (
-                <motion.article
-                  className="op-condition-card"
-                  key={condition.title}
-                  initial={{ opacity: 0, y: 15 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.35, delay: index * 0.05 }}
-                >
-                  <div className="op-condition-icon">
-                    <Icon size={22} />
-                  </div>
-                  <div>
-                    <h3>{condition.title}</h3>
-                    <p>{condition.description}</p>
-                  </div>
-                  <ArrowRight className="op-condition-arrow" size={18} />
-                </motion.article>
-              );
-            })}
-          </div>
-
-          <p className="op-condition-note">
-            Online physiotherapy is not suitable for every condition. Your
-            therapist may recommend an in person assessment when necessary.
-          </p>
-        </div>
-      </section>
-
-      <section className="op-section op-process">
-        <div className="op-container">
-          <SectionHeading
-            eyebrow="YOUR CARE JOURNEY"
-            title="Four Steps Towards Better"
-            highlight="Movement"
-            description="A clear process helps you understand what to expect before, during and after your consultation."
-            align="center"
-            size="large"
-          />
-
-          <div className="op-process-grid">
+          <div className="opStepsGrid">
             {steps.map((step, index) => {
               const Icon = step.icon;
 
               return (
                 <motion.article
-                  className="op-process-card"
+                  className="opStepCard"
                   key={step.number}
-                  initial={{ opacity: 0, y: 18 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.4, delay: index * 0.08 }}
+                  {...reveal}
+                  transition={{
+                    duration: 0.5,
+                    delay: reduceMotion ? 0 : index * 0.08,
+                  }}
                 >
-                  <div className="op-process-top">
-                    <span className="op-step-number">{step.number}</span>
-                    <div className="op-process-icon">
-                      <Icon size={22} />
-                    </div>
+                  <div className="opStepTop">
+                    <span className="opStepNumber">{step.number}</span>
+                    <span className="opStepIcon">
+                      <Icon size={23} strokeWidth={1.8} />
+                    </span>
                   </div>
                   <h3>{step.title}</h3>
                   <p>{step.description}</p>
@@ -385,141 +249,204 @@ function OnlinePhysiotherapy() {
         </div>
       </section>
 
-      <section className="op-section op-preparation">
-        <div className="op-container op-preparation-grid">
-          <div className="op-preparation-content">
-            <SectionHeading
-              eyebrow="BEFORE YOUR SESSION"
-              title="Get Ready for Your"
-              highlight="Consultation"
-              description="A few simple preparations can help your online session run more smoothly."
-              align="left"
-              size="large"
-            />
-
-            <ul className="op-preparation-list">
-              <li>
-                <CheckCircle2 />
-                <span>Keep your phone or computer charged.</span>
-              </li>
-              <li>
-                <CheckCircle2 />
-                <span>Choose a quiet space with good lighting.</span>
-              </li>
-              <li>
-                <CheckCircle2 />
-                <span>Wear comfortable clothing that allows movement.</span>
-              </li>
-              <li>
-                <CheckCircle2 />
-                <span>Keep your relevant medical information available.</span>
-              </li>
-              <li>
-                <CheckCircle2 />
-                <span>Prepare a few questions about your concerns.</span>
-              </li>
-            </ul>
-          </div>
-
-          <div className="op-preparation-card">
-            <div className="op-preparation-card-icon">
-              <Laptop size={27} />
-            </div>
-            <h3>Your simple session checklist</h3>
+      <section className="opSection opBenefits">
+        <div className="opContainer">
+          <motion.div className="opSectionHeading" {...reveal}>
+            <span className="opEyebrow">MADE FOR YOUR ROUTINE</span>
+            <h2>
+              Support that makes
+              <span> care more convenient</span>
+            </h2>
             <p>
-              A stable internet connection, a camera and enough room to move
-              are usually a good place to start.
+              Get professional guidance in a way that works with your life.
             </p>
-            <div className="op-device-row">
-              <span><MonitorSmartphone size={17} /> Phone or tablet</span>
-              <span><Video size={17} /> Camera enabled</span>
-              <span><Stethoscope size={17} /> Questions ready</span>
-            </div>
-            <Link to="/appointment" className="op-text-link">
-              Plan your appointment <ArrowRight size={17} />
-            </Link>
-          </div>
-        </div>
-      </section>
+          </motion.div>
 
-      <section className="op-section op-faq-section">
-        <div className="op-container op-faq-layout">
-          <div className="op-faq-intro">
-            <div className="op-faq-icon">
-              <CircleHelp size={28} />
-            </div>
-            <SectionHeading
-              eyebrow="NEED TO KNOW MORE?"
-              title="Frequently Asked"
-              highlight="Questions"
-              description="Find answers to common questions about online physiotherapy and getting started."
-              align="left"
-              size="large"
-            />
-            <Link to="/contact" className="op-text-link">
-              Still have questions? Contact us <ArrowRight size={17} />
-            </Link>
-          </div>
-
-          <div className="op-faq-list">
-            {faqs.map((faq, index) => {
-              const isOpen = openFaq === index;
+          <div className="opBenefitsGrid">
+            {benefits.map((benefit, index) => {
+              const Icon = benefit.icon;
 
               return (
-                <article
-                  className={`op-faq-item ${isOpen ? "is-open" : ""}`}
-                  key={faq.question}
+                <motion.article
+                  className="opBenefitCard"
+                  key={benefit.title}
+                  {...reveal}
+                  transition={{
+                    duration: 0.5,
+                    delay: reduceMotion ? 0 : index * 0.07,
+                  }}
                 >
-                  <button
-                    className="op-faq-question"
-                    type="button"
-                    aria-expanded={isOpen}
-                    onClick={() => setOpenFaq(isOpen ? -1 : index)}
-                  >
-                    <span>{faq.question}</span>
-                    <ChevronDown
-                      size={19}
-                      className="op-faq-chevron"
-                    />
-                  </button>
-
-                  {isOpen && (
-                    <div className="op-faq-answer">
-                      <p>{faq.answer}</p>
-                    </div>
-                  )}
-                </article>
+                  <span className="opBenefitIcon">
+                    <Icon size={25} strokeWidth={1.8} />
+                  </span>
+                  <h3>{benefit.title}</h3>
+                  <p>{benefit.description}</p>
+                </motion.article>
               );
             })}
           </div>
         </div>
       </section>
 
-      <section className="op-final-cta">
-        <div className="op-container">
-          <div className="op-final-cta-inner">
-            <div className="op-final-cta-copy">
-              <span className="op-final-eyebrow">TAKE YOUR FIRST STEP</span>
-              <h2>Make Time for Better Movement</h2>
-              <p>
-                Start with a conversation about your goals and find out whether
-                online physiotherapy is right for you.
-              </p>
+      <section className="opSection opConditions">
+        <div className="opContainer opConditionsGrid">
+          <motion.div className="opConditionsVisual" {...reveal}>
+            <img
+              src="https://images.pexels.com/photos/6740056/pexels-photo-6740056.jpeg"
+              alt="Person practising a guided home movement exercise"
+              loading="lazy"
+            />
+            <div className="opConditionsTag">
+              <Activity size={18} />
+              Movement matters
+            </div>
+          </motion.div>
+
+          <motion.div className="opConditionsContent" {...reveal}>
+            <span className="opEyebrow">PERSONALISED MOVEMENT SUPPORT</span>
+            <h2>
+              Help for the movement
+              <span> challenges you face</span>
+            </h2>
+            <p>
+              Online physiotherapy may be appropriate for a range of
+              musculoskeletal and movement concerns. Your physiotherapist will
+              discuss your symptoms and decide what care is suitable.
+            </p>
+
+            <div className="opConditionList">
+              {conditions.map((condition) => (
+                <div className="opConditionItem" key={condition}>
+                  <CheckCircle2 size={17} />
+                  <span>{condition}</span>
+                </div>
+              ))}
             </div>
 
-            <div className="op-final-actions">
-              <Link to="/appointment" className="op-final-button">
-                Book Your Appointment <ArrowRight size={18} />
-              </Link>
-              <Link to="/contact" className="op-final-secondary">
-                Talk to Our Team
-              </Link>
-            </div>
-          </div>
+            <p className="opSmallNote">
+              If you have severe or sudden symptoms, seek appropriate medical
+              attention rather than relying on an online session alone.
+            </p>
+
+            <Link className="opButton opButtonPrimary" to="/conditions">
+              Explore Conditions
+              <ArrowUpRight size={17} />
+            </Link>
+          </motion.div>
         </div>
       </section>
+
+      <section className="opSection opRequirements">
+        <div className="opContainer">
+          <motion.div className="opSectionHeading" {...reveal}>
+            <span className="opEyebrow">GET READY FOR YOUR SESSION</span>
+            <h2>
+              A few simple things
+              <span> to get started</span>
+            </h2>
+            <p>
+              Prepare a comfortable space and connect with your
+              physiotherapist from home.
+            </p>
+          </motion.div>
+
+          <motion.div className="opRequirementsCard" {...reveal}>
+            <div className="opRequirementsVisual">
+              <div className="opDeviceIcon">
+                <Smartphone size={35} />
+              </div>
+              <div className="opDeviceIcon opWifiIcon">
+                <Wifi size={29} />
+              </div>
+              <span className="opRequirementsCaption">
+                Your space. Your session.
+              </span>
+            </div>
+
+            <div className="opRequirementsList">
+              {requirements.map((item) => (
+                <div className="opRequirement" key={item}>
+                  <CheckCircle2 size={19} />
+                  <span>{item}</span>
+                </div>
+              ))}
+
+              <div className="opRequirementsTip">
+                <Clock3 size={19} />
+                <p>
+                  Keep a little extra time before your session to check your
+                  connection and prepare any questions.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="opSection opFaq">
+        <div className="opContainer opFaqGrid">
+          <motion.div className="opFaqIntro" {...reveal}>
+            <span className="opEyebrow">COMMON QUESTIONS</span>
+            <h2>
+              Everything you need
+              <span> to know</span>
+            </h2>
+            <p>
+              Have questions about online physiotherapy? Start with these
+              answers, or contact our team for further guidance.
+            </p>
+            <Link className="opTextLink" to="/contact">
+              Contact our team
+              <ArrowUpRight size={18} />
+            </Link>
+            <div className="opFaqDecoration">
+              <CircleHelp size={36} strokeWidth={1.3} />
+              <span>We are here to help</span>
+            </div>
+          </motion.div>
+
+          <motion.div className="opFaqList" {...reveal}>
+            {faqs.map((faq, index) => {
+              const isOpen = openFaq === index;
+
+              return (
+                <div
+                  className={`opFaqItem ${isOpen ? "isOpen" : ""}`}
+                  key={faq.question}
+                >
+                  <button
+                    type="button"
+                    className="opFaqQuestion"
+                    aria-expanded={isOpen}
+                    onClick={() => setOpenFaq(isOpen ? -1 : index)}
+                  >
+                    <span>{faq.question}</span>
+                    <span className="opFaqToggle">
+                      {isOpen ? <Minus size={18} /> : <Plus size={18} />}
+                    </span>
+                  </button>
+
+                  {isOpen && (
+                    <div className="opFaqAnswer">
+                      <p>{faq.answer}</p>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </motion.div>
+        </div>
+      </section>
+
+      <CTASection
+        eyebrow="YOUR NEXT STEP STARTS HERE"
+        title="Ready to move with more confidence?"
+        description="Book an appointment to discuss your needs and find out whether online physiotherapy is right for you."
+        buttonText="Book an Appointment"
+        buttonLink="/appointment"
+        secondaryText="Explore Our Services"
+        secondaryLink="/services"
+      />
     </main>
   );
 }
-
-export default OnlinePhysiotherapy;

@@ -1,464 +1,303 @@
-
-import { useMemo, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import {
-  ArrowRight,
-  Award,
-  CalendarDays,
-  CheckCircle2,
+  ArrowUpRight,
   HeartPulse,
-  Search,
   ShieldCheck,
-  Sparkles,
-  Stethoscope,
-  Users,
-  X,
+  UsersRound,
+  Activity,
+  Target,
+  MessageCircleHeart,
+  GraduationCap,
 } from "lucide-react";
 
-import HeroSection from "../../components/HeroSection/HeroSection";
-import SectionHeading from "../../components/SectionHeading/SectionHeading";
-import CTASection from "../../components/CTASection/CTASection";
 
 import "./Team.css";
+import HeroSection from "../../components/HeroSection/HeroSection";
+import CTASection from "../../components/CTASection/CTASection";
 
 const teamMembers = [
   {
-    id: 1,
-    name: "Dr. Aditi Sharma",
+    name: "Dr. Team Member One",
     role: "Senior Physiotherapist",
-    qualification: "BPT, MPT",
-    experience: "8 years of experience",
-    specialty: "Orthopedic Care",
+    qualification: "Add verified qualification",
+    specialty: "Movement and pain management",
     image:
-      "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=800&q=85",
-    bio: "Focuses on movement assessment, joint mobility and personalized rehabilitation planning.",
-    interests: ["Joint mobility", "Pain management", "Rehabilitation"],
+      "https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg",
   },
   {
-    id: 2,
-    name: "Dr. Rohan Verma",
-    role: "Sports Physiotherapist",
-    qualification: "BPT, Sports Rehabilitation",
-    experience: "6 years of experience",
-    specialty: "Sports Rehabilitation",
+    name: "Dr. Team Member Two",
+    role: "Musculoskeletal Physiotherapist",
+    qualification: "Add verified qualification",
+    specialty: "Muscle and joint rehabilitation",
     image:
-      "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=800&q=85",
-    bio: "Supports recovery planning for sports related injuries and gradual return to physical activity.",
-    interests: ["Sports injuries", "Strength", "Movement training"],
+      "https://images.pexels.com/photos/5214958/pexels-photo-5214958.jpeg",
   },
   {
-    id: 3,
-    name: "Dr. Neha Kapoor",
-    role: "Neurological Physiotherapist",
-    qualification: "BPT, MPT",
-    experience: "7 years of experience",
-    specialty: "Neurological Care",
+    name: "Dr. Team Member Three",
+    role: "Rehabilitation Specialist",
+    qualification: "Add verified qualification",
+    specialty: "Mobility and functional recovery",
     image:
-      "https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=800&q=85",
-    bio: "Works with individualized rehabilitation goals involving balance, coordination and daily function.",
-    interests: ["Balance training", "Coordination", "Mobility"],
+      "https://images.pexels.com/photos/5327656/pexels-photo-5327656.jpeg",
   },
-  {
-    id: 4,
-    name: "Dr. Arjun Mehta",
-    role: "Rehabilitation Physiotherapist",
-    qualification: "BPT, Rehabilitation",
-    experience: "5 years of experience",
-    specialty: "Recovery and Mobility",
-    image:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=85",
-    bio: "Helps patients work towards improved movement, flexibility and confidence in daily activities.",
-    interests: ["Functional movement", "Flexibility", "Recovery"],
-  },
-];
-
-const specialties = [
-  "All Specialists",
-  "Orthopedic Care",
-  "Sports Rehabilitation",
-  "Neurological Care",
-  "Recovery and Mobility",
 ];
 
 const values = [
   {
     icon: HeartPulse,
-    title: "Patient First",
+    title: "Patient first",
     description:
-      "We listen to your concerns and keep your goals at the centre of your care.",
+      "We listen to your concerns and work around your needs, comfort and recovery goals.",
+  },
+  {
+    icon: Target,
+    title: "Personalised care",
+    description:
+      "Your care plan should reflect your abilities, daily routine and individual progress.",
+  },
+  {
+    icon: MessageCircleHeart,
+    title: "Clear communication",
+    description:
+      "We explain exercises, answer your questions and help you understand the next steps.",
   },
   {
     icon: ShieldCheck,
-    title: "Responsible Care",
+    title: "Responsible guidance",
     description:
-      "We value appropriate assessment, clear communication and safe progression.",
-  },
-  {
-    icon: Users,
-    title: "Personal Attention",
-    description:
-      "We recognise that each person has different needs, abilities and priorities.",
+      "We consider your symptoms and safety when recommending treatment and movement activities.",
   },
 ];
 
-function Team() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [activeSpecialty, setActiveSpecialty] = useState("All Specialists");
-  const [selectedMember, setSelectedMember] = useState(null);
+export default function Team() {
+  const reduceMotion = useReducedMotion();
 
-  const filteredMembers = useMemo(() => {
-    const search = searchTerm.trim().toLowerCase();
-
-    return teamMembers.filter((member) => {
-      const matchesSpecialty =
-        activeSpecialty === "All Specialists" ||
-        member.specialty === activeSpecialty;
-
-      const searchableText = [
-        member.name,
-        member.role,
-        member.qualification,
-        member.specialty,
-        ...member.interests,
-      ]
-        .join(" ")
-        .toLowerCase();
-
-      return matchesSpecialty && searchableText.includes(search);
-    });
-  }, [searchTerm, activeSpecialty]);
+  const reveal = reduceMotion
+    ? {}
+    : {
+        initial: { opacity: 0, y: 20 },
+        whileInView: { opacity: 1, y: 0 },
+        viewport: { once: true, amount: 0.15 },
+        transition: { duration: 0.5 },
+      };
 
   return (
-    <main className="team-page">
+    <main className="rehabTeamPage">
       <HeroSection
-        eyebrow="MEET YOUR CARE TEAM"
-        title="People Who Care About"
-        highlight="Your Progress"
-        description="Meet the professionals who help you understand your movement, work towards your goals and make informed decisions about your physiotherapy journey."
-        primaryText="Book an Appointment"
-        primaryLink="/appointment"
-        secondaryText="Explore Our Services"
-        secondaryLink="/services"
-        image="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=90"
-        imageAlt="Healthcare professionals in a clinical setting"
-        imageLabel="Care begins with listening"
-        imageDescription="A supportive approach built around your needs"
-        showStats={false}
-        showImage={true}
+        eyebrow="THE PEOPLE BEHIND YOUR PROGRESS"
+        title="Care built around"
+        highlight="you and your goals."
+        description="Meet the people who support your journey towards better movement. Our approach centres on listening, personalised guidance and helping you take practical steps towards recovery."
+        buttonText="Book an Appointment"
+        buttonLink="/appointment"
+        secondaryText="Our Approach"
+        secondaryLink="#teamApproach"
+        image="https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg"
+        imageAlt="Healthcare professionals working together"
+        imageLabel="Your wellbeing matters"
+        imageDescription="Thoughtful care for your movement and recovery"
+        features={[
+          "Patient focused guidance",
+          "Personalised care plans",
+          "Support at every step",
+        ]}
       />
 
-      <section className="team-intro team-shell">
-        <div className="team-intro-copy">
-          <span className="team-eyebrow">
-            <Sparkles size={15} />
-            THE PEOPLE BEHIND YOUR CARE
-          </span>
+      <section className="rtSection rtIntroduction">
+        <div className="rtContainer rtIntroductionGrid">
+          <motion.div className="rtIntroCopy" {...reveal}>
+            <span className="rtEyebrow">MORE THAN TREATMENT</span>
+            <h2>
+              A team that listens,
+              <span> guides and supports.</span>
+            </h2>
+            <p>
+              Every recovery journey is different. Understanding your concerns,
+              daily routine and goals helps shape a more meaningful approach to
+              physiotherapy.
+            </p>
+            <p>
+              We believe good care combines clear communication, thoughtful
+              guidance and a plan that works for your everyday life.
+            </p>
+            <Link className="rtTextLink" to="/services">
+              Explore our services
+              <ArrowUpRight size={18} />
+            </Link>
+          </motion.div>
 
-          <h2>
-            Expertise with a
-            <span> human touch.</span>
-          </h2>
-
-          <p>
-            Good physiotherapy starts with understanding the person, not just
-            the symptoms. Our approach brings together attentive listening,
-            thoughtful assessment and care shaped around individual goals.
-          </p>
-        </div>
-
-        <div className="team-intro-stat">
-          <div className="team-stat-icon">
-            <Users size={25} />
-          </div>
-          <div>
-            <strong>One shared purpose</strong>
-            <p>Helping people move with greater confidence.</p>
-          </div>
+          <motion.div className="rtIntroVisual" {...reveal}>
+            <img
+              src="https://images.pexels.com/photos/7551656/pexels-photo-7551656.jpeg"
+              alt="Physiotherapy professional supporting a patient"
+              loading="lazy"
+            />
+            <div className="rtImageCaption">
+              <HeartPulse size={22} />
+              <div>
+                <strong>Your goals guide the journey</strong>
+                <span>Care that starts with listening</span>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
-      <section className="team-directory team-shell" id="team-directory">
-        <SectionHeading
-          eyebrow="OUR SPECIALISTS"
-          title="Meet Your Physiotherapy"
-          highlight="Team"
-          description="Explore our team by area of focus and find out more about each professional."
-          align="center"
-        />
+      <section className="rtSection rtMembers" id="teamMembers">
+        <div className="rtContainer">
+          <motion.div className="rtSectionHeading" {...reveal}>
+            <span className="rtEyebrow">MEET THE TEAM</span>
+            <h2>
+              People dedicated to
+              <span> better movement</span>
+            </h2>
+            <p>
+              Get to know the professionals who help make your care journey
+              more personal and supportive.
+            </p>
+          </motion.div>
 
-        <div className="team-tools">
-          <label className="team-search">
-            <Search size={19} aria-hidden="true" />
-            <input
-              type="search"
-              value={searchTerm}
-              onChange={(event) => setSearchTerm(event.target.value)}
-              placeholder="Search name or specialization"
-              aria-label="Search team members"
-            />
-            {searchTerm && (
-              <button
-                type="button"
-                aria-label="Clear search"
-                onClick={() => setSearchTerm("")}
-              >
-                <X size={17} />
-              </button>
-            )}
-          </label>
-
-          <span className="team-result-count">
-            {filteredMembers.length}{" "}
-            {filteredMembers.length === 1 ? "specialist" : "specialists"}
-          </span>
-        </div>
-
-        <div className="team-filters" aria-label="Filter by specialization">
-          {specialties.map((specialty) => (
-            <button
-              key={specialty}
-              type="button"
-              className={`team-filter ${
-                activeSpecialty === specialty ? "is-active" : ""
-              }`}
-              aria-pressed={activeSpecialty === specialty}
-              onClick={() => setActiveSpecialty(specialty)}
-            >
-              {specialty}
-            </button>
-          ))}
-        </div>
-
-        {filteredMembers.length > 0 ? (
-          <div className="team-grid">
-            {filteredMembers.map((member, index) => (
+          <div className="rtMemberGrid">
+            {teamMembers.map((member, index) => (
               <motion.article
-                key={member.id}
-                className="team-card"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.12 }}
-                transition={{ duration: 0.4, delay: (index % 4) * 0.08 }}
-                whileHover={{ y: -5 }}
+                className="rtMemberCard"
+                key={member.name}
+                {...reveal}
+                transition={{
+                  duration: 0.5,
+                  delay: reduceMotion ? 0 : index * 0.08,
+                }}
               >
-                <div className="team-card-image-wrap">
+                <div className="rtMemberImage">
                   <img
                     src={member.image}
-                    alt={`Sample portrait for ${member.name}`}
-                    className="team-card-image"
+                    alt={`Profile image for ${member.role}`}
                     loading="lazy"
                   />
-                  <span className="team-card-specialty">
-                    {member.specialty}
+                  <span className="rtMemberNumber">
+                    {String(index + 1).padStart(2, "0")}
                   </span>
                 </div>
 
-                <div className="team-card-content">
+                <div className="rtMemberInfo">
+                  <span className="rtMemberRole">{member.role}</span>
                   <h3>{member.name}</h3>
-                  <p className="team-card-role">{member.role}</p>
-
-                  <div className="team-card-details">
-                    <span>
-                      <Award size={16} />
-                      {member.qualification}
-                    </span>
-                    <span>
-                      <CalendarDays size={16} />
-                      {member.experience}
-                    </span>
+                  <p className="rtQualification">
+                    <GraduationCap size={16} />
+                    {member.qualification}
+                  </p>
+                  <div className="rtMemberSpecialty">
+                    <Activity size={16} />
+                    <span>{member.specialty}</span>
                   </div>
-
-                  <p className="team-card-bio">{member.bio}</p>
-
-                  <button
-                    type="button"
-                    className="team-profile-link"
-                    onClick={() => setSelectedMember(member)}
-                  >
-                    View Profile
-                    <ArrowRight size={17} />
-                  </button>
                 </div>
               </motion.article>
             ))}
           </div>
-        ) : (
-          <div className="team-empty">
-            <Search size={30} />
-            <h3>No specialists found</h3>
-            <p>Try a different name or select another specialization.</p>
-            <button
-              type="button"
-              onClick={() => {
-                setSearchTerm("");
-                setActiveSpecialty("All Specialists");
-              }}
-            >
-              View All Specialists
-            </button>
-          </div>
-        )}
-      </section>
 
-      <section className="team-values team-shell">
-        <SectionHeading
-          eyebrow="HOW WE WORK"
-          title="Care Built Around"
-          highlight="You"
-          description="Our values guide how we listen, communicate and support your goals."
-          align="center"
-        />
-
-        <div className="team-values-grid">
-          {values.map((value, index) => {
-            const Icon = value.icon;
-
-            return (
-              <motion.article
-                key={value.title}
-                className="team-value-card"
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-              >
-                <div className="team-value-icon">
-                  <Icon size={23} />
-                </div>
-                <h3>{value.title}</h3>
-                <p>{value.description}</p>
-              </motion.article>
-            );
-          })}
+          <p className="rtProfileNote">
+            Sample profiles for layout preview only. Replace names, photographs,
+            qualifications and specialties with verified team information
+            before publishing.
+          </p>
         </div>
       </section>
 
-      <section className="team-journey team-shell">
-        <div className="team-journey-panel">
-          <div>
-            <span className="team-eyebrow">
-              <CheckCircle2 size={15} />
-              YOUR CARE JOURNEY
-            </span>
-
+      <section className="rtSection rtApproach" id="teamApproach">
+        <div className="rtContainer">
+          <motion.div className="rtSectionHeading" {...reveal}>
+            <span className="rtEyebrow">HOW WE WORK</span>
             <h2>
-              The right support starts with
-              <span> a conversation.</span>
+              The values behind
+              <span> every care journey</span>
             </h2>
-
             <p>
-              Tell us about your needs and our team can help you understand the
-              next steps for arranging an appointment.
+              Our approach is centred on understanding people, not just
+              symptoms.
+            </p>
+          </motion.div>
+
+          <div className="rtValuesGrid">
+            {values.map((value, index) => {
+              const Icon = value.icon;
+
+              return (
+                <motion.article
+                  className="rtValueCard"
+                  key={value.title}
+                  {...reveal}
+                  transition={{
+                    duration: 0.5,
+                    delay: reduceMotion ? 0 : index * 0.07,
+                  }}
+                >
+                  <span className="rtValueIcon">
+                    <Icon size={25} strokeWidth={1.8} />
+                  </span>
+                  <h3>{value.title}</h3>
+                  <p>{value.description}</p>
+                </motion.article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="rtSection rtCommitment">
+        <div className="rtContainer rtCommitmentGrid">
+          <motion.div className="rtCommitmentVisual" {...reveal}>
+            <img
+              src="https://images.pexels.com/photos/4506109/pexels-photo-4506109.jpeg"
+              alt="Physiotherapist guiding a patient during rehabilitation"
+              loading="lazy"
+            />
+          </motion.div>
+
+          <motion.div className="rtCommitmentCopy" {...reveal}>
+            <span className="rtEyebrow">YOUR JOURNEY MATTERS</span>
+            <h2>
+              Small steps can lead
+              <span> to meaningful progress.</span>
+            </h2>
+            <p>
+              We aim to make every interaction clear, supportive and relevant
+              to your needs. Together, you and your physiotherapist can work
+              towards practical goals and review progress along the way.
             </p>
 
-            <Link to="/appointment" className="team-primary-button">
-              Book an Appointment
-              <ArrowRight size={17} />
-            </Link>
-          </div>
+            <div className="rtCommitmentPoints">
+              <div>
+                <UsersRound size={21} />
+                <span>Care shaped around your needs</span>
+              </div>
+              <div>
+                <Activity size={21} />
+                <span>Guidance for everyday movement</span>
+              </div>
+              <div>
+                <ShieldCheck size={21} />
+                <span>Thoughtful and responsible support</span>
+              </div>
+            </div>
 
-          <div className="team-journey-points">
-            <div>
-              <span>01</span>
-              <p>Share your concerns and goals</p>
-            </div>
-            <div>
-              <span>02</span>
-              <p>Discuss suitable care options</p>
-            </div>
-            <div>
-              <span>03</span>
-              <p>Plan your next step with the team</p>
-            </div>
-          </div>
+            <Link className="rtButton" to="/appointment">
+              Meet us through a consultation
+              <ArrowUpRight size={17} />
+            </Link>
+          </motion.div>
         </div>
       </section>
 
       <CTASection
-        eyebrow="WE ARE HERE TO HELP"
-        title="Ready to Take the Next Step?"
-        description="Connect with our team to discuss your needs and arrange your physiotherapy appointment."
+        eyebrow="LET US TAKE THE NEXT STEP TOGETHER"
+        title="Your recovery journey starts with a conversation."
+        description="Tell us about your movement goals and discover the care options that may be right for you."
         buttonText="Book an Appointment"
         buttonLink="/appointment"
-        secondaryText="Contact Our Team"
-        secondaryLink="/contact"
+        secondaryText="Explore Our Services"
+        secondaryLink="/services"
       />
-
-      {selectedMember && (
-        <div
-          className="team-modal-backdrop"
-          role="presentation"
-          onMouseDown={(event) => {
-            if (event.target === event.currentTarget) {
-              setSelectedMember(null);
-            }
-          }}
-        >
-          <motion.div
-            className="team-modal"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="team-modal-title"
-            initial={{ opacity: 0, y: 15, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.22 }}
-          >
-            <button
-              type="button"
-              className="team-modal-close"
-              aria-label="Close profile"
-              onClick={() => setSelectedMember(null)}
-            >
-              <X size={21} />
-            </button>
-
-            <img
-              src={selectedMember.image}
-              alt=""
-              className="team-modal-image"
-            />
-
-            <div className="team-modal-content">
-              <span className="team-card-specialty">
-                {selectedMember.specialty}
-              </span>
-              <h2 id="team-modal-title">{selectedMember.name}</h2>
-              <p className="team-modal-role">{selectedMember.role}</p>
-
-              <div className="team-modal-info">
-                <span>
-                  <Award size={17} />
-                  {selectedMember.qualification}
-                </span>
-                <span>
-                  <CalendarDays size={17} />
-                  {selectedMember.experience}
-                </span>
-              </div>
-
-              <p className="team-modal-bio">{selectedMember.bio}</p>
-
-              <h3>Areas of Focus</h3>
-              <div className="team-interest-list">
-                {selectedMember.interests.map((interest) => (
-                  <span key={interest}>{interest}</span>
-                ))}
-              </div>
-
-              <Link
-                to="/appointment"
-                className="team-primary-button"
-              >
-                Book an Appointment
-                <ArrowRight size={17} />
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-      )}
     </main>
   );
 }
-
-export default Team;

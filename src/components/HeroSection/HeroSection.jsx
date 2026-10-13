@@ -13,7 +13,9 @@ import {
 } from "lucide-react";
 import "./HeroSection.css";
 
-const HeroSection = () => {
+const HeroSection = ({  image = "https://images.pexels.com/photos/5793700/pexels-photo-5793700.jpeg",
+  imageAlt = "Physiotherapy patient care",
+}) => {
   const reduceMotion = useReducedMotion();
 
   const fadeUp = {
@@ -137,9 +139,9 @@ const HeroSection = () => {
 
           <div className="rehabHeroImageFrame">
             <img
-              src="https://images.pexels.com/photos/5793700/pexels-photo-5793700.jpeg"
+              src={image}
               alt="Healthcare professional providing attentive patient care"
-              className="rehabHeroImage"
+              className={imageAlt}
               fetchPriority="high"
             />
 
